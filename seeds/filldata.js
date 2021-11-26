@@ -1,22 +1,26 @@
 const mongoose=require('mongoose');
 const movieSchema=require('../models/movie');
-const {movies}=require('./data');
+const {data}=require('./data');
 const mongoDB=require('../MongoDB/server');
 
 mongoDB();
 
-const seedDB=()=>{
+const seedDB= async ()=>{
 
 
 
     await movieSchema.deleteMany({});
     for(let i=0 ;i<=200;i++){
         const movie=new movieSchema({
-            Title:`${m[i].name}`,
-            tags:`${m[i].tags}`,
-            details:`${m[i].details}`,
-            Poster:`${m[i].image}`
+            Title:`${data[i][i].name}`,
+            tags:`${data[i][i].tags}`,
+            details:`${data[i][i].details}`,
+            Poster:`${data[i][i].image}`
         })
         await movie.save();
     }
 }
+
+seedDB().then(() => {
+    mongoose.connection.close();
+});
