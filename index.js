@@ -2,6 +2,7 @@ const express=require('express');
 const app=express();
 const path = require('path');
 const mongoDB=require('./MongoDB/server');
+const movieSchema=require('./models/movie');
 
 mongoDB();
   // Set the default templating engine to ejs
@@ -10,8 +11,10 @@ mongoDB();
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }))
 
-app.get('/',(req,res)=>{
-    res.render('home');
+app.get('/',async(req,res)=>{
+  const movies =await movieSchema.find({});
+
+    res.render('home', {movies});
 
 })
 app.get('/register',(req,res)=>{

@@ -1,1 +1,20 @@
 <%- include('./layouts/boilerplates') %> 
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6  ">
+            <% for(let m of movies){ %> 
+            <div class=" col-4 card" style="width: 18rem;">
+                <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%= m.Title %> </h5>
+                  <p class="card-text"><%= m.details %> </p>
+               
+                </div>
+              </div>
+              <% } %> 
+        </div>
+    </div>
+</div>
