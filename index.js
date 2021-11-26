@@ -1,7 +1,9 @@
 const express=require('express');
 const app=express();
 const path = require('path');
+const mongoDB=require('./MongoDB/server');
 
+mongoDB();
   // Set the default templating engine to ejs
   app.set('view engine', 'ejs');
   app.set('views', path.join(__dirname, 'views'));

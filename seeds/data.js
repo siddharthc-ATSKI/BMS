@@ -1,4 +1,4 @@
-[{
+module.exports.movies=[{
 	"0": {
 		"name": "Valayam 2020 Telugu Full Movie 400MB WEBRip Download",
 		"tags": ["300MB Movies", "Telugu Movies"],

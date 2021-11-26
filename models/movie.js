@@ -43,5 +43,15 @@ const movieSchema = new schema({
   ,
   Writer:{
       type:String
-  }
+  },
+  tags:{
+    type:String
+}
+,
+details:{
+  type:String
+}
+
 });
+
+module.exports=mongoose.model('Movies',movieSchema);
