@@ -5,8 +5,12 @@ const mongoDB = require("./MongoDB/server");
 const movieSchema = require("./models/movie");
 const userSchema = require("./models/user");
 const ejsMate = require("ejs-mate");
+// const collectottdata=require('./seeds/ottdata');
+const axios = require("axios").default;
+const options=require('./seeds/ottdata');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 mongoDB();
 // Set the default templating engine to ejs
 app.engine("ejs", ejsMate);
@@ -37,6 +41,18 @@ app.get("/search", (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
+app.get('/ott', async (req,res)=>{
+  axios.request(options).then(function (response) {
+    // console.log(response.data);
+    let d=response.data.results;
+    console.log(d);
+    res.render('ottpage',{d});
+  
+}).catch(function (error) {
+    console.error(error);
+    return
+});
+})
 app.listen(3000, () => {
   console.log("Listening");
 });
