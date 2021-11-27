@@ -10,10 +10,18 @@ const userSchema=new scheam({
         unique:true
 
     },
+    mobilenumber:{
+        type:Number,
+        required:true
+    },
     email:{
         type:String,
         required:true,
         unique:true
+    },
+    password:{
+        type:String,
+        required:true
     }
 })
 // userSchema.plugin(passportLocalMongoose);
