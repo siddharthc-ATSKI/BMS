@@ -38,7 +38,7 @@ app.post("/register", async (req, res) => {
   res.send("sent");
 });
 app.get("/search",async (req, res) => {
-  
+  res.render('search')
    
 });
 app.get("/login", (req, res) => {
