@@ -5,6 +5,7 @@ const mongoDB = require("./MongoDB/server");
 const movieSchema = require("./models/movie");
 const userSchema = require("./models/user");
 const ejsMate = require("ejs-mate");
+const data2=require('./seeds/data2');
 // const collectottdata=require('./seeds/ottdata');
 const axios = require("axios").default;
 const options=require('./seeds/ottdata');
@@ -20,7 +21,7 @@ app.set("views", path.join(__dirname, "views"));
 app.get("/", async (req, res) => {
   const movies = await movieSchema.find({});
 
-  res.render("home", { movies });
+  res.render("home", { data2 });
 });
 app.get("/register", (req, res) => {
   res.render("register");
@@ -45,7 +46,7 @@ app.get('/ott', async (req,res)=>{
   axios.request(options).then(function (response) {
     // console.log(response.data);
     let d=response.data.results;
-    console.log(d);
+    // console.log(d);
     res.render('ottpage',{d});
   
 }).catch(function (error) {

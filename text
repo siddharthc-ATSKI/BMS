@@ -1,0 +1,21 @@
+<!-- <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        
+            <% for(let m of movies){ %> 
+             
+              <% if(m.Poster){ %>  <div class="col  ">  
+            <div class=" col-4 card" style="width: 18rem;">
+                <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%= m.Title %> </h5>
+                  <p class="card-text"><%= m.details %> </p>
+               
+                </div>
+              </div>
+            </div>
+            <% } %> 
+              <% } %> 
+        
+    </div>
+</div> -->
