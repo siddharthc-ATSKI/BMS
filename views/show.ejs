@@ -1,11 +1,19 @@
 <%- include('./layouts/boilerplates') %> 
 
 
-    
-        <h5 class="card-title"><%=mov.Title%> </h5>
-        <p class="card-text"><%=mov.details%> </p>
-       
-     
-<a class="button" href="/<%=mov._id%>/bookings"> Book SEATS</a>
+<p> <%= mov.genre %></p>
+<% if(mov.imageurl){ %> 
+  <div class="col  ">
+<div class=" col-4 card m-3" style="width: 18rem;">
+  <img class="card-img-top" src="<%= mov.imageurl[0] %> " alt="Card image cap">
+  </div></div>
+  <% }%>
+<p> <%= mov.imdbrating %></p>
+<p> <%= mov.released %></p>
+<p> <%= mov.runtime %></p>
+<p> <%= mov.synopsis %></p>
+
+
+<a class="button" href="/<%=mov.imdbid%>/bookings"> Book SEATS</a>
 
 <a class="button" href="/">Back</a>

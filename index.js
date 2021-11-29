@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV !=="production"){
+  require('dotenv').config();
+}
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -39,6 +43,40 @@ app.get('/', async (req,res)=>{
 })
 
 
+app.get('/ott', async (req,res)=>{
+  axios.request(options).then(function (response) {
+    // console.log(response.data);
+    let d=response.data.results;
+    
+    res.render('ottpage',{d});
+  
+}).catch(function (error) {
+    console.error(error);
+    return
+});
+})  
+
+
+app.get("/:id",async (req,res)=>{
+  const {id}=req.params;
+  var options = {
+    method: 'GET',
+    url: 'https://ott-details.p.rapidapi.com/gettitleDetails',
+    params: {imdbid:id},
+    headers: {
+      'x-rapidapi-host': process.env.x_rapid_api_host ,
+      'x-rapidapi-key': process.env.x_rapid_api_key
+    }
+  };
+  axios.request(options).then(function (response) {
+    //console.log(response.data);
+   let mov=response.data;
+   res.render("show",{mov})
+ }).catch(function (error) {
+   console.error(error);
+ });
+//const ott=await response.data.results.findById(req.params)
+})
 
 app.get("/register", (req, res) => {
   res.render("register");
@@ -58,18 +96,7 @@ app.get("/search",async (req, res) => {
 app.get("/login", (req, res) => {
   res.render("login");
 });
-app.get('/ott', async (req,res)=>{
-  axios.request(options).then(function (response) {
-    // console.log(response.data);
-    let d=response.data.results;
-    
-    res.render('ottpage',{d});
-  
-}).catch(function (error) {
-    console.error(error);
-    return
-});
-})
+
 app.get("/ott/:id",async (req,res)=>{
   const {id}=req.params;
   var options = {
@@ -77,8 +104,8 @@ app.get("/ott/:id",async (req,res)=>{
     url: 'https://ott-details.p.rapidapi.com/gettitleDetails',
     params: {imdbid:id},
     headers: {
-      'x-rapidapi-host': 'ott-details.p.rapidapi.com',
-      'x-rapidapi-key': 'f5e170df5cmshcc9b230d5f0dce9p193c0bjsn8235bc8bba90'
+      'x-rapidapi-host': process.env.x_rapid_api_host ,
+      'x-rapidapi-key': process.env.x_rapid_api_key
     }
   };
   
@@ -91,13 +118,7 @@ app.get("/ott/:id",async (req,res)=>{
   });
  //const ott=await response.data.results.findById(req.params)
 })
-app.get('/:id',async (req,res)=>{
-  const{id}=req.params;
-  const mov=await movieSchema.findById(req.params.id);
-  res.render('show',{mov})
 
-  res.render('show',{mov})
-})
 app.get('/:id/bookings',(req,res)=>{
  
   res.render('bookings')

@@ -13,7 +13,7 @@ module.exports = {
       page: '4'
     },
     headers: {
-      'x-rapidapi-host': 'ott-details.p.rapidapi.com',
-      'x-rapidapi-key': 'f5e170df5cmshcc9b230d5f0dce9p193c0bjsn8235bc8bba90'
+      'x-rapidapi-host': process.env.x_rapid_api_host ,
+      'x-rapidapi-key': process.env.x_rapid_api_key
     }
   };
