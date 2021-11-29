@@ -9,13 +9,13 @@ module.exports = {
     max_imdb: '7.8',
     genre: 'action',
     language: 'english',
-    type: 'movie',
+    type: 'show',
     sort: 'latest',
     page: '1'
   },
   headers: {
     'x-rapidapi-host': 'ott-details.p.rapidapi.com',
-    'x-rapidapi-key': '7b7e8679c8mshd689823a71c887dp19505fjsnfe7fc3812c2b'
+    'x-rapidapi-key': 'f5e170df5cmshcc9b230d5f0dce9p193c0bjsn8235bc8bba90'
   }
 };
 // const collectdata= ()=>{

@@ -7,14 +7,16 @@
 
        
             <% for(let m of d){ %> 
-                <% if(m.imageurl[0]){ %> 
+                <% if(m.imageurl){ %> 
                 <div class="col  ">
             <div class=" col-4 card m-3" style="width: 18rem;">
                 <img class="card-img-top" src="<%= m.imageurl[0] %> " alt="Card image cap">
                 <div class="card-body">
+                
                   <h5 class="card-title"><%= m.title %> </h5>
                   <p class="card-text"><%= m.synopsis %> </p>
-               
+                  <a class="button" href="/ott/<%= m.imdbid %>"> Rent Show</a>
+
                 </div>
               </div>
             </div>
