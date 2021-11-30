@@ -1,0 +1,18 @@
+<%- include('./layouts/boilerplates') %> 
+
+<p> <%= s.genre %></p>
+<% if(s.imageurl){ %> 
+  <div class="col  ">
+<div class=" col-4 card m-3" style="width: 18rem;">
+  <img class="card-img-top" src="<%= s.imageurl[0] %> " alt="Card image cap">
+  </div></div>
+  <% }%>
+<p> <%= s.imdbrating %></p>
+<p> <%= s.released %></p>
+<p> <%= s.runtime %></p>
+<p> <%= s.synopsis %></p>
+
+
+<a class="button" href="/<%=s.imdbid%>/bookings"> Rent Show</a>
+
+<a class="button" href="/">Back</a>

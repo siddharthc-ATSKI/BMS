@@ -9,6 +9,7 @@ module.exports = {
     max_imdb: '7.8',
     genre: 'action',
     language: 'english',
+<<<<<<< HEAD
     type: 'movie',
     sort: 'latest',
     page: '1'
@@ -16,6 +17,15 @@ module.exports = {
   headers: {
     'x-rapidapi-host': 'ott-details.p.rapidapi.com',
     'x-rapidapi-key': '7b7e8679c8mshd689823a71c887dp19505fjsnfe7fc3812c2b'
+=======
+    type: 'show',
+    sort: 'latest',
+    page: '4'
+  },
+  headers: {
+    'x-rapidapi-host':process.env.x_rapid_api_host ,
+    'x-rapidapi-key': process.env.x_rapid_api_key
+>>>>>>> atharva_1
   }
 };
 // const collectdata= ()=>{
