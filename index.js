@@ -1,6 +1,6 @@
-if(process.env.NODE_ENV !=="production"){
-  require('dotenv').config();
-}
+//if(process.env.NODE_ENV !=="production"){
+//  require('dotenv').config();
+//}
 
 const express = require("express");
 const app = express();
@@ -57,6 +57,27 @@ app.get('/ott', async (req,res)=>{
 })  
 
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+app.post("/register", async (req, res) => {
+  const { username, email, password, mobilenumber } = req.body;
+  const newUser=new userSchema({username,email,password,mobilenumber});
+  await newUser.save();
+  console.log(newUser);
+  res.send("sent");
+});
+app.get("/search",async (req, res) => {
+  res.render('search')
+   
+});
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+
+
 app.get("/:id",async (req,res)=>{
   const {id}=req.params;
   var options = {
@@ -78,24 +99,7 @@ app.get("/:id",async (req,res)=>{
 //const ott=await response.data.results.findById(req.params)
 })
 
-app.get("/register", (req, res) => {
-  res.render("register");
-});
 
-app.post("/register", async (req, res) => {
-  const { username, email, password, mobilenumber } = req.body;
-  const newUser=new userSchema({username,email,password,mobilenumber});
-  await newUser.save();
-  console.log(newUser);
-  res.send("sent");
-});
-app.get("/search",async (req, res) => {
-  res.render('search')
-   
-});
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 
 app.get("/ott/:id",async (req,res)=>{
   const {id}=req.params;
