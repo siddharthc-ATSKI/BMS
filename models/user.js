@@ -1,15 +1,11 @@
 const mongoose=require('mongoose');
+const passportLocalMongoose=require('passport-local-mongoose');
 const scheam=mongoose.Schema;
 // const passportLocalMongoose=require('passport-local-mongoose');
 
 
 const userSchema=new scheam({
-    username:{
-        type:String,
-        required:true,
-        unique:true
-
-    },
+    
     mobilenumber:{
         type:Number,
         required:true
@@ -18,11 +14,8 @@ const userSchema=new scheam({
         type:String,
         required:true,
         unique:true
-    },
-    password:{
-        type:String,
-        required:true
     }
+   
 })
-// userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
 module.exports=mongoose.model('Users',userSchema);
