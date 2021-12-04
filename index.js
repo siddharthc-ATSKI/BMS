@@ -33,7 +33,15 @@ app.set("views", path.join(__dirname, "views"));
 // });
 
 
-app.get('/', async (req,res)=>{
+// app.get('/', async (req,res)=>{
+//   axios.request(options).then(function (response) {
+//    let movies=response.data.results;
+//     res.render("home",{movies})
+//   }).catch(function (error) {
+//     console.error(error);
+//   });
+// })
+app.get('/movies', async (req,res)=>{
   axios.request(options).then(function (response) {
    let movies=response.data.results;
     res.render("home",{movies})
@@ -41,8 +49,7 @@ app.get('/', async (req,res)=>{
     console.error(error);
   });
 })
-
-app.get("/:id",async (req,res)=>{
+app.get("/movies/:id",async (req,res)=>{
   const {id}=req.params;
   var options = {
     method: 'GET',

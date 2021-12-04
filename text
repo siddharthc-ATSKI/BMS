@@ -50,3 +50,19 @@
     </div>
     <% } %>
       <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+      <p class="card-text"><%= m.synopsis %> </p>
+      <!-- <form action="/movies/<%= m.imdbid %>" method="get">
+        <button>View</button>
+      </form> -->

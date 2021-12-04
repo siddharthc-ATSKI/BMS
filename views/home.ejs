@@ -25,9 +25,10 @@
           <div class="card-body">
           
             <h5 class="card-title"><%= m.title %> </h5>
-            <p class="card-text"><%= m.synopsis %> </p>
-            <a class="button" href="/<%= m.imdbid %>"> View</a>
-
+            
+            <form action="/movies/<%= m.imdbid %>" method="get">
+              <button>View</button>
+            </form>
           </div>
         </div>
       </div>
@@ -50,8 +51,10 @@
           <div class="card-body">
           
             <h5 class="card-title"><%= m.title %> </h5>
-            <p class="card-text"><%= m.synopsis %> </p>
-            <a class="button" href="/<%= m.imdbid %>"> View</a>
+           
+            <form action="/movies/<%= m.imdbid %>" method="get">
+              <button>View</button>
+            </form>
 
           </div>
         </div>
