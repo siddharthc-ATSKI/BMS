@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const path = require("path");
-const {isLoggedIn}=require('./middleware')
+const { isLoggedIn } = require("./middleware");
 const session = require("express-session");
 const flash = require("connect-flash");
 const mongoDB = require("./MongoDB/server");
@@ -18,10 +18,12 @@ const { data } = require("./seeds/data");
 const request = require("request");
 const passport = require("passport");
 const passportLocal = require("passport-local");
+const ExpressError = require("./utils/Expresserror");
+const catchAysnc = require("./utils/catchAysnc");
 // const collectottdata=require('./seeds/ottdata');
 const axios = require("axios").default;
 const options = require("./seeds/ottdata");
-const { authenticate } = require("passport");
+// const { authenticate } = require("passport");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -51,6 +53,14 @@ app.use(passport.session());
 passport.use(new passportLocal(userSchema.authenticate()));
 passport.serializeUser(userSchema.serializeUser());
 passport.deserializeUser(userSchema.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
 // app.get("/", async (req, res) => {
 //   const movies = await movieSchema.find({});
 
@@ -65,64 +75,73 @@ passport.deserializeUser(userSchema.deserializeUser());
 //     console.error(error);
 //   });
 // })
-app.get("/movies", async (req, res) => {
-  axios
-    .request(options)
-    .then(function (response) {
-      let movies = response.data.results;
-      res.render("home", { movies });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-});
-app.get("/movies/:id", async (req, res) => {
-  const { id } = req.params;
-  var options = {
-    method: "GET",
-    url: "https://ott-details.p.rapidapi.com/gettitleDetails",
-    params: { imdbid: id },
-    headers: {
-      "x-rapidapi-host": process.env.x_rapid_api_host,
-      "x-rapidapi-key": process.env.x_rapid_api_key,
-    },
-  };
-  axios
-    .request(options)
-    .then(function (response) {
-      // console.log(response.data);
-      let mov = response.data;
-      res.render("show", { mov });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  //const ott=await response.data.results.findById(req.params)
-});
-app.get("/ott/:id", async (req, res) => {
-  const { id } = req.params;
-  var options = {
-    method: "GET",
-    url: "https://ott-details.p.rapidapi.com/gettitleDetails",
-    params: { imdbid: id },
-    headers: {
-      "x-rapidapi-host": process.env.x_rapid_api_host,
-      "x-rapidapi-key": process.env.x_rapid_api_key,
-    },
-  };
+app.get(
+  "/movies",
+  catchAysnc(async (req, res) => {
+    axios
+      .request(options)
+      .then(function (response) {
+        let movies = response.data.results;
+        res.render("home", { movies });
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  })
+);
+app.get(
+  "/movies/:id",
+  catchAysnc(async (req, res) => {
+    const { id } = req.params;
+    var options = {
+      method: "GET",
+      url: "https://ott-details.p.rapidapi.com/gettitleDetails",
+      params: { imdbid: id },
+      headers: {
+        "x-rapidapi-host": process.env.x_rapid_api_host,
+        "x-rapidapi-key": process.env.x_rapid_api_key,
+      },
+    };
+    axios
+      .request(options)
+      .then(function (response) {
+        // console.log(response.data);
+        let mov = response.data;
+        res.render("show", { mov });
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    //const ott=await response.data.results.findById(req.params)
+  })
+);
+app.get(
+  "/ott/:id",
+  catchAysnc(async (req, res) => {
+    const { id } = req.params;
+    var options = {
+      method: "GET",
+      url: "https://ott-details.p.rapidapi.com/gettitleDetails",
+      params: { imdbid: id },
+      headers: {
+        "x-rapidapi-host": process.env.x_rapid_api_host,
+        "x-rapidapi-key": process.env.x_rapid_api_key,
+      },
+    };
 
-  axios
-    .request(options)
-    .then(function (response) {
-      //console.log(response.data);
-      let s = response.data;
-      res.render("showott", { s });
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  //const ott=await response.data.results.findById(req.params)
-});
+    axios
+      .request(options)
+      .then(function (response) {
+        //console.log(response.data);
+        let s = response.data;
+        res.render("showott", { s });
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    //const ott=await response.data.results.findById(req.params)
+  })
+);
 app.get("/search", async (req, res) => {
   res.render("search");
 });
@@ -130,14 +149,17 @@ app.get("/search", async (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
-app.post("/register", async (req, res) => {
-  const { username, email, password, mobilenumber } = req.body;
-  const newUser = new userSchema({ username, email, mobilenumber });
-  // await newUser.save();
-  const newU = await userSchema.register(newUser, password);
-  console.log(newU);
-  res.send("sent");
-});
+app.post(
+  "/register",
+  catchAysnc(async (req, res) => {
+    const { username, email, password, mobilenumber } = req.body;
+    const newUser = new userSchema({ username, email, mobilenumber });
+    // await newUser.save();
+    const newU = await userSchema.register(newUser, password);
+    console.log(newU);
+    res.send("sent");
+  })
+);
 app.get("/search", (req, res) => {
   // const {search}=req.body;
   console.log(req.body);
@@ -149,29 +171,55 @@ app.get("/login", (req, res) => {
 
 app.post(
   "/login",
-  passport.
-    authenticate("local", { failureFlash: true, failureRedirect: "/login" }),
-  async (req,res) => {
-    res.send('login');
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/login",
+  }),
+  async (req, res) => {
+    req.flash("success", "login");
+    res.redirect("/movies");
   }
 );
-app.get("/ott", async (req, res) => {
-  axios
-    .request(options)
-    .then(function (response) {
-      // console.log(response.data);
-      let d = response.data.results;
-      // console.log(d);
-      res.render("ottpage", { d });
-    })
-    .catch(function (error) {
-      console.error(error);
-      return;
-    });
+
+app.use(
+  "/logout",
+  catchAysnc((req, res) => {
+    req.logout();
+    req.flash("success", "goodbye");
+    res.redirect("/movies");
+  })
+);
+app.get(
+  "/ott",
+  catchAysnc(async (req, res) => {
+    axios
+      .request(options)
+      .then(function (response) {
+        // console.log(response.data);
+        let d = response.data.results;
+        // console.log(d);
+        res.render("ottpage", { d });
+      })
+      .catch(function (error) {
+        console.error(error);
+        return;
+      });
+  })
+);
+
+app.get("/:id/bookings", isLoggedIn, (req, res) => {
+  res.render("bookings");
 });
 
-app.get("/:id/bookings", isLoggedIn,(req, res) => {
-  res.render("bookings");
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page not found", 400));
+  // res.send('404')
+});
+
+app.use((err, req, res, next) => {
+  const { message = "something went wrong", statusCode = 500 } = err;
+  res.status(statusCode).render("error", { err });
+  // res.send('dhadha')
 });
 app.listen(3000, () => {
   console.log("Listening");
