@@ -1,12 +1,7 @@
-const { Int32 } = require("bson");
 const mongoose = require("mongoose");
 // const { schema } = require('./user');
 const schema = mongoose.Schema;
 const movieSchema = new schema({
-  
-Id:{
-  type:Number
-},
   Title: {
     type: String,
     required: true,

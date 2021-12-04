@@ -1,27 +1,79 @@
-<%- include('./layouts/boilerplates') %> 
+<%- include('./layouts/boilerplates') %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-<div class="container ">
-    
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="container-fluid ">
+    <div class="row">
+      <h1>Treding on Netflix</h1>
+      <div class="owl-carousel owl-theme">
 
-       
-            <% for(let m of d){ %> 
-                <% if(m.imageurl){ %> 
-                <div class="col  ">
-            <div class=" col-4 card m-3" style="width: 18rem;">
+
+        <% for(let m of d){ %>
+          <% if(m.imageurl[0]){ %>
+            <div class="col  ">
+              <div class=" col-4 card m-3" style="width: 18rem;">
                 <img class="card-img-top" src="<%= m.imageurl[0] %> " alt="Card image cap">
                 <div class="card-body">
-                
-                  <h5 class="card-title"><%= m.title %> </h5>
-                  <p class="card-text"><%= m.synopsis %> </p>
-                  <a class="button" href="/ott/<%= m.imdbid %>"> View Show</a>
+                  <h5 class="card-title">
+                    <%= m.title %>
+                  </h5>
+                  <p class="card-text">
+                    <%= m.synopsis %>
+                  </p>
 
                 </div>
               </div>
             </div>
-            <% } %> 
-              <% } %> 
-        
+            <% } %>
+              <% } %>
+
+      </div>
     </div>
-</div>
+
+
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+      loop: true,
+      nav: true,
+      margin: 5,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        960: {
+          items: 4
+        },
+        1200: {
+          items: 4
+        }
+      }
+    });
+    owl.on('mousewheel', '.owl-stage', function (e) {
+      if (e.deltaY > 0) {
+        owl.trigger('next.owl');
+      } else {
+        owl.trigger('prev.owl');
+      }
+      e.preventDefault();
+    });
+  </script>

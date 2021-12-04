@@ -2,21 +2,21 @@ if(process.env.NODE_ENV !=="production"){
   require('dotenv').config();
 }
 
+
 const express = require("express");
 const app = express();
 const path = require("path");
-const {v4:uuid}=require('uuid');
-const {data}=require('./seeds/data');
-const request = require('request');
-
 const mongoDB = require("./MongoDB/server");
 const movieSchema = require("./models/movie");
 const userSchema = require("./models/user");
 const ejsMate = require("ejs-mate");
+const data2=require('./seeds/data2');
+const {v4:uuid}=require('uuid');
+const {data}=require('./seeds/data');
+const request = require('request');
 // const collectottdata=require('./seeds/ottdata');
 const axios = require("axios").default;
 const options=require('./seeds/ottdata');
-const optionsm=require("./seeds/moviedata.js");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -25,37 +25,22 @@ mongoDB();
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-//
-//app.get("/", async (req, res) => {
-//  const movies = await movieSchema.find({});
-//  
-//  res.render("home", { movies });
-//});
-//
+
+// app.get("/", async (req, res) => {
+//   const movies = await movieSchema.find({});
+
+//   res.render("home", { data2 });
+// });
+
 
 app.get('/', async (req,res)=>{
-  axios.request(optionsm).then(function (response) {
+  axios.request(options).then(function (response) {
    let movies=response.data.results;
     res.render("home",{movies})
   }).catch(function (error) {
     console.error(error);
   });
 })
-
-
-app.get('/ott', async (req,res)=>{
-  axios.request(options).then(function (response) {
-    // console.log(response.data);
-    let d=response.data.results;
-    
-    res.render('ottpage',{d});
-  
-}).catch(function (error) {
-    console.error(error);
-    return
-});
-})  
-
 
 app.get("/:id",async (req,res)=>{
   const {id}=req.params;
@@ -77,26 +62,6 @@ app.get("/:id",async (req,res)=>{
  });
 //const ott=await response.data.results.findById(req.params)
 })
-
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.post("/register", async (req, res) => {
-  const { username, email, password, mobilenumber } = req.body;
-  const newUser=new userSchema({username,email,password,mobilenumber});
-  await newUser.save();
-  console.log(newUser);
-  res.send("sent");
-});
-app.get("/search",async (req, res) => {
-  res.render('search')
-   
-});
-app.get("/login", (req, res) => {
-  res.render("login");
-});
-
 app.get("/ott/:id",async (req,res)=>{
   const {id}=req.params;
   var options = {
@@ -118,6 +83,42 @@ app.get("/ott/:id",async (req,res)=>{
   });
  //const ott=await response.data.results.findById(req.params)
 })
+app.get("/search",async (req, res) => {
+  res.render('search')
+   
+});
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+app.post("/register", async (req, res) => {
+  const { username, email, password, mobilenumber } = req.body;
+  const newUser=new userSchema({username,email,password,mobilenumber});
+  await newUser.save();
+  console.log(newUser);
+  res.send("sent");
+});
+app.get("/search", (req, res) => {
+  // const {search}=req.body;
+  console.log(req.body);
+  res.send(req.body);
+});
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+app.get('/ott', async (req,res)=>{
+  axios.request(options).then(function (response) {
+    // console.log(response.data);
+    let d=response.data.results;
+    // console.log(d);
+    res.render('ottpage',{d});
+  
+}).catch(function (error) {
+    console.error(error);
+    return
+});
+})
+
 
 app.get('/:id/bookings',(req,res)=>{
  
