@@ -90,7 +90,7 @@ app.get("/movies/:id", async (req, res) => {
   axios
     .request(options)
     .then(function (response) {
-      //console.log(response.data);
+      // console.log(response.data);
       let mov = response.data;
       res.render("show", { mov });
     })
@@ -170,7 +170,7 @@ app.get("/ott", async (req, res) => {
     });
 });
 
-app.get("/:id/bookings", (req, res) => {
+app.get("/:id/bookings", isLoggedIn,(req, res) => {
   res.render("bookings");
 });
 app.listen(3000, () => {
