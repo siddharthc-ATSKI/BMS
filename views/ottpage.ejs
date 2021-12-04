@@ -23,9 +23,10 @@
                   <h5 class="card-title">
                     <%= m.title %>
                   </h5>
-                  <p class="card-text">
-                    <%= m.synopsis %>
-                  </p>
+                 
+      <form action="/movies/<%= m.imdbid %>" method="get">
+        <button type="button" class="btn btn-info">View</button>
+      </form>
 
                 </div>
               </div>
