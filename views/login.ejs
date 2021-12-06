@@ -1,11 +1,11 @@
-<%- include('./layouts/boilerplates') %> 
+<% layout('/layouts/boilerplates') %> 
 
 
 <div class="container">
     <div class="row">
-        <div class="col-6 offset-3">
+        <div class="col-6 offset-3" style="margin-bottom: 250px;">
             <form action="/login" method="post">
-                <div class="form-group">
+                <div class="form-group ">
                   <label for="exampleInputEmail1">Username</label>
                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -21,6 +21,9 @@
                
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
+        </div>
+        <div class="col-6 offset-3">
+          <a href="/theotorlogin">Login as Theotor Owner </a>
         </div>
     </div>
 </div>

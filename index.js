@@ -29,9 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoDB();
 // Set the default templating engine to ejs
-app.engine("ejs", ejsMate);
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+
 
 const sessionConfig = {
   secret: "123456789",
@@ -63,7 +61,9 @@ app.use((req, res, next) => {
 });
 
 
-
+app.engine("ejs", ejsMate);
+app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));
 
 app.get( "/movies", catchAysnc(async (req, res) => {
   const data=await movieSchema.find({});
@@ -80,6 +80,13 @@ app.get("/movies/:_id",catchAysnc(async (req, res) => {
   
     
 res.render('show',{mov});
+  })
+);
+app.get(
+  "/ott",
+  catchAysnc(async (req, res) => {
+    const ottData=await movieSchema.find({});
+    res.render('ottpage',{ottData});
   })
 );
 app.get("/ott/:_id",catchAysnc(async (req, res) => {
@@ -121,14 +128,9 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    failureFlash: true,
-    failureRedirect: "/login",
-  }),
+app.post("/login",passport.authenticate("local", {failureFlash: true,failureRedirect: "/login",}),
   async (req, res) => {
-    req.flash("success", "login");
+    req.flash('success', 'welcome!!');
     res.redirect("/movies");
   }
 );
@@ -141,14 +143,10 @@ app.use(
     res.redirect("/movies");
   })
 );
-app.get(
-  "/ott",
-  catchAysnc(async (req, res) => {
-    const ottData=await movieSchema.find({});
-    res.render('ottpage',{ottData});
-  })
-);
 
+app.get('/theotorlogin', catchAysnc(async (req,res)=>{
+  res.send('done')
+}))
 app.get("/:_id/bookings", isLoggedIn, (req, res) => {
   res.render("bookings");
 });
