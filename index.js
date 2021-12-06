@@ -14,7 +14,7 @@ const userSchema = require("./models/user");
 const ejsMate = require("ejs-mate");
 const data2 = require("./seeds/data2");
 const { v4: uuid } = require("uuid");
-const { data } = require("./seeds/data");
+// const  data  = require("./seeds/rapidapi");
 const request = require("request");
 const passport = require("passport");
 const passportLocal = require("passport-local");
@@ -61,85 +61,37 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   next();
 });
-// app.get("/", async (req, res) => {
-//   const movies = await movieSchema.find({});
 
-//   res.render("home", { data2 });
-// });
 
-// app.get('/', async (req,res)=>{
-//   axios.request(options).then(function (response) {
-//    let movies=response.data.results;
-//     res.render("home",{movies})
-//   }).catch(function (error) {
-//     console.error(error);
-//   });
-// })
-app.get(
-  "/movies",
-  catchAysnc(async (req, res) => {
-    axios
-      .request(options)
-      .then(function (response) {
-        let movies = response.data.results;
-        res.render("home", { movies });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+
+
+app.get( "/movies", catchAysnc(async (req, res) => {
+  const data=await movieSchema.find({});
+  // console.log(typeof(data));
+  
+    res.render('home',{data});
   })
 );
-app.get(
-  "/movies/:id",
-  catchAysnc(async (req, res) => {
-    const { id } = req.params;
-    var options = {
-      method: "GET",
-      url: "https://ott-details.p.rapidapi.com/gettitleDetails",
-      params: { imdbid: id },
-      headers: {
-        "x-rapidapi-host": process.env.x_rapid_api_host,
-        "x-rapidapi-key": process.env.x_rapid_api_key,
-      },
-    };
-    axios
-      .request(options)
-      .then(function (response) {
-        // console.log(response.data);
-        let mov = response.data;
-        res.render("show", { mov });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    //const ott=await response.data.results.findById(req.params)
+app.get("/movies/:_id",catchAysnc(async (req, res) => {
+    const { _id } = req.params;
+    // console.log(_id);
+    const mov= await movieSchema.findById(_id);
+    console.log(mov);
+  
+    
+res.render('show',{mov});
   })
 );
-app.get(
-  "/ott/:id",
-  catchAysnc(async (req, res) => {
-    const { id } = req.params;
-    var options = {
-      method: "GET",
-      url: "https://ott-details.p.rapidapi.com/gettitleDetails",
-      params: { imdbid: id },
-      headers: {
-        "x-rapidapi-host": process.env.x_rapid_api_host,
-        "x-rapidapi-key": process.env.x_rapid_api_key,
-      },
-    };
-
-    axios
-      .request(options)
-      .then(function (response) {
-        //console.log(response.data);
-        let s = response.data;
-        res.render("showott", { s });
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    //const ott=await response.data.results.findById(req.params)
+app.get("/ott/:_id",catchAysnc(async (req, res) => {
+    
+    const { _id } = req.params;
+    // console.log(_id);
+    const s= await movieSchema.findById(_id);
+    // console.l/og(mov);
+    res.render('showott',{s});
+    
+  
+    
   })
 );
 app.get("/search", async (req, res) => {
@@ -192,22 +144,12 @@ app.use(
 app.get(
   "/ott",
   catchAysnc(async (req, res) => {
-    axios
-      .request(options)
-      .then(function (response) {
-        // console.log(response.data);
-        let d = response.data.results;
-        // console.log(d);
-        res.render("ottpage", { d });
-      })
-      .catch(function (error) {
-        console.error(error);
-        return;
-      });
+    const ottData=await movieSchema.find({});
+    res.render('ottpage',{ottData});
   })
 );
 
-app.get("/:id/bookings", isLoggedIn, (req, res) => {
+app.get("/:_id/bookings", isLoggedIn, (req, res) => {
   res.render("bookings");
 });
 

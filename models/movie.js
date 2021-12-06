@@ -16,6 +16,10 @@ const movieSchema = new schema({
   Runtime: {
     type: String,
   },
+  genre:{
+    type:[String]
+  },
+
   Actor:{
       type:String
   },
@@ -51,7 +55,11 @@ const movieSchema = new schema({
 details:{
   type:String
 }
-
+,
+imdbid:{
+  type:String,
+  required:true
+}
 });
 
 module.exports=mongoose.model('Movies',movieSchema);

@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 const movieSchema=require('../models/movie');
-const {data}=require('./data');
+const data=require('./rapidapi');
 const mongoDB=require('../MongoDB/server');
 
 mongoDB();
@@ -10,12 +10,15 @@ const seedDB= async ()=>{
 
 
     await movieSchema.deleteMany({});
-    for(let i=0 ;i<=50;i++){
+    for(let m of data){
         const movie=new movieSchema({
-            Title:`${data[i][i].name}`,
-            tags:`${data[i][i].tags}`,
-            details:`${data[i][i].details}`,
-            Poster:`${data[i][i].image}`
+            Title:`${m.title}`,
+           
+            details:`${m.synopsis}`,
+            Poster:`${m.imageurl[0]}`,
+            imdbid:`${m.imdbid}`,
+            imdbRating:`${m.imdbrating}`,
+            genre:`${m.genre}`
         })
         await movie.save();
     }

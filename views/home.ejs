@@ -17,22 +17,22 @@
 
 
 
-        <% for(let m of movies){ %> 
-          <% if(m.imageurl){ %> 
+        <% for(let m of data){ %> 
+          
           <div class="col  ">
       <div class=" col-4 card m-3" style="width: 18rem;">
-          <img class="card-img-top" src="<%= m.imageurl[0] %> " alt="Card image cap">
+          <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
           <div class="card-body">
           
-            <h5 class="card-title"><%= m.title %> </h5>
+            <h5 class="card-title"><%= m.Title %> </h5>
             
-            <form action="/movies/<%= m.imdbid %>" method="get">
+            <form action="/movies/<%= m._id %>" method="get">
               <button type="submit" class="btn btn-info">View</button>
             </form>
           </div>
         </div>
       </div>
-      <% } %> 
+     
         <% } %> 
 
 
@@ -43,14 +43,14 @@
       <div class="owl-carousel owl-theme">
 
 
-        <% for(let m of movies){ %> 
-          <% if(m.imageurl){ %> 
+        <% for(let m of data){ %> 
+           
           <div class="col  ">
       <div class=" col-4 card m-3" style="width: 18rem;">
-          <img class="card-img-top" src="<%= m.imageurl[0] %> " alt="Card image cap">
+          <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
           <div class="card-body">
           
-            <h5 class="card-title"><%= m.title %> </h5>
+            <h5 class="card-title"><%= m.Title %> </h5>
            
             <form action="/movies/<%= m.imdbid %>" method="get">
               <button type="submit" class="btn btn-info">View</button>
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <% } %> 
+       
         <% } %> 
 
       
@@ -68,6 +68,35 @@
       </div>
     </div>
 
+    <div class="row">
+      <h1>Top Online Streaming</h1>
+      <div class="owl-carousel owl-theme">
+
+
+        <% for(let m of data){ %> 
+           
+          <div class="col  ">
+      <div class=" col-4 card m-3" style="width: 18rem;">
+          <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+          <div class="card-body">
+          
+            <h5 class="card-title"><%= m.Title %> </h5>
+           
+            <form action="/movies/<%= m.imdbid %>" method="get">
+              <button type="submit" class="btn btn-info">View</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+       
+        <% } %> 
+
+      
+
+
+      </div>
+    </div>
 
   </div>
   <img

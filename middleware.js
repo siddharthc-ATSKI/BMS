@@ -3,4 +3,5 @@ module.exports.isLoggedIn= (req,res,next)=>{
         console.log('login in first');
         res.redirect('/login');
     }
+    next();
 }

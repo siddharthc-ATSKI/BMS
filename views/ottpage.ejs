@@ -14,17 +14,17 @@
       <div class="owl-carousel owl-theme">
 
 
-        <% for(let m of d){ %>
-          <% if(m.imageurl[0]){ %>
+        <% for(let m of ottData){ %>
+          <% if(m.Poster){ %>
             <div class="col  ">
               <div class=" col-4 card m-3" style="width: 18rem;">
-                <img class="card-img-top" src="<%= m.imageurl[0] %> " alt="Card image cap">
+                <img class="card-img-top" src="<%= m.Poster%> " alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">
-                    <%= m.title %>
+                    <%= m.Title %>
                   </h5>
                  
-      <form action="/movies/<%= m.imdbid %>" method="get">
+      <form action="/ott/<%= m._id %>" method="get">
         <button type="submit" class="btn btn-info">View</button>
       </form>
 
