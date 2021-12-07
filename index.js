@@ -145,7 +145,11 @@ app.use(
 );
 
 app.get('/theotorlogin', catchAysnc(async (req,res)=>{
-  res.send('done')
+  res.render('theotorLogin');
+}))
+
+app.post('/theotorlogin', catchAysnc( async (req,res)=>{
+  res.send('done!!')
 }))
 app.get("/:_id/bookings", isLoggedIn, (req, res) => {
   res.render("bookings");
