@@ -1,3 +1,6 @@
+const passport=require('passport');
+const passportLocal=require('passport-local');
+
 const data = [
   {
     name: "Prithvi Theatre",
@@ -102,17 +105,20 @@ const seedDB= async ()=>{
 
 
     await theotorSchema.deleteMany({});
-    for(let m of data){
+    for(let i=0;i<10;i++){
         const theotor=new theotorSchema({
-            name:m.name,
-            location:m.location,
-            Opened:m.Opened,
-            Owner:m.Owner,
-            Phone:m.Phone,
-            rating:m.rating
+            username:`admin_${i}`,
+            name:data[i].name,
+            location:data[i].location,
+            Opened:data[i].Opened,
+            Owner:data[i].Owner,
+            Phone:data[i].Phone,
+            rating:data[i].rating
 
         })
-        await theotor.save();
+        const newUser= await theotorSchema.register(theotor,"admin");
+
+      
     }
 }
 

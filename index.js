@@ -135,9 +135,7 @@ app.post("/login",passport.authenticate("local", {failureFlash: true,failureRedi
   }
 );
 
-app.use(
-  "/logout",
-  catchAysnc((req, res) => {
+app.use("/logout",isLoggedIn,catchAysnc((req, res) => {
     req.logout();
     req.flash("success", "goodbye");
     res.redirect("/movies");
@@ -148,8 +146,10 @@ app.get('/theotorlogin', catchAysnc(async (req,res)=>{
   res.render('theotorLogin');
 }))
 
-app.post('/theotorlogin', catchAysnc( async (req,res)=>{
-  res.send('done!!')
+app.post('/theotorlogin',passport.authenticate("local", {failureFlash: true,failureRedirect: "/theotorlogin",}) ,catchAysnc( async (req,res)=>{
+  req.flash('success','welcome admin');
+  
+
 }))
 app.get("/:_id/bookings", isLoggedIn, (req, res) => {
   res.render("bookings");

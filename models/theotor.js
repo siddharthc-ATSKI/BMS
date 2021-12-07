@@ -37,5 +37,5 @@ const theotorSchema= new schema({
   }
 })
 
-// theotorSchema.plugin(passportLocalMongoose);
+theotorSchema.plugin(passportLocalMongoose);
 module.exports=mongoose.model('Theotors',theotorSchema);
