@@ -2,9 +2,14 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+var Publishable_Key = 'pk_test_51K1bYMSBA7A7Kw5YXcq1uL8Beh5N0BJjU86uxd9H1FgMcnsNbkJfWbDv9jfU5MoSRsIU8NaGxEGYhdBued5agbXn00wFmlidve'
+var Secret_Key = 'sk_test_51K1bYMSBA7A7Kw5YnoAfMI7Z3puR5PCdSszk40iMBkkkw3obKjfKs5lD1wbyxJ5XXj8Nak5Lh2TVCjoCkF76eiNA00DzDzt0ai'
+
 const express = require("express");
 const app = express();
 const path = require("path");
+const stripe = require('stripe')(Secret_Key)
+const bodyparser = require('body-parser')
 const { isLoggedIn } = require("./middleware");
 const session = require("express-session");
 const flash = require("connect-flash");
@@ -65,6 +70,13 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
+
+
+app.get("/", async (req, res) => {
+  res.render("firstview");
+});
+
+
 app.get( "/movies", catchAysnc(async (req, res) => {
   const data=await movieSchema.find({});
   // console.log(typeof(data));
@@ -72,6 +84,53 @@ app.get( "/movies", catchAysnc(async (req, res) => {
     res.render('home',{data});
   })
 );
+
+//payment section
+
+
+ 
+app.get('/gateway', function(req, res){ 
+	res.render('gateway', { 
+	key: Publishable_Key 
+	}) 
+}) 
+
+app.post('/payment', function(req, res){ 
+
+	// Moreover you can take more details from user 
+	// like Address, Name, etc from form 
+	stripe.customers.create({ 
+		email: req.body.stripeEmail, 
+		source: req.body.stripeToken, 
+		name: 'Gautam Sharma', 
+		address: { 
+			line1: 'TC 9/4 Old MES colony', 
+			postal_code: '110092', 
+			city: 'New Delhi', 
+			state: 'Delhi', 
+			country: 'India', 
+		} 
+	}) 
+	.then((customer) => { 
+
+		return stripe.charges.create({ 
+			amount: 7000,	 // Charing Rs 25 
+			description: 'Web Development Product', 
+			currency: 'INR', 
+			customer: customer.id 
+		}); 
+	}) 
+	.then((charge) => { 
+		res.send("Success") // If no error occurs 
+	}) 
+	.catch((err) => { 
+		res.send(err)	 // If some error occurs 
+	}); 
+}) 
+
+
+
+
 app.get("/movies/:_id",catchAysnc(async (req, res) => {
     const { _id } = req.params;
     // console.log(_id);
@@ -148,8 +207,10 @@ app.get('/theotorlogin', catchAysnc(async (req,res)=>{
 
 app.post('/theotorlogin',passport.authenticate("local", {failureFlash: true,failureRedirect: "/theotorlogin",}) ,catchAysnc( async (req,res)=>{
   req.flash('success','welcome admin');
-  
+}));
 
+app.get('/theatrelogin', catchAysnc(async (req,res)=>{
+  res.send('done')
 }))
 app.get("/:_id/bookings", isLoggedIn, (req, res) => {
   res.render("bookings");
@@ -167,4 +228,4 @@ app.use((err, req, res, next) => {
 });
 app.listen(3000, () => {
   console.log("Listening");
-});
+})
