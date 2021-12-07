@@ -16,6 +16,7 @@ const flash = require("connect-flash");
 const mongoDB = require("./MongoDB/server");
 const movieSchema = require("./models/movie");
 const userSchema = require("./models/user");
+const showSchema=require('./models/showDetails');
 const ejsMate = require("ejs-mate");
 const data2 = require("./seeds/data2");
 const { v4: uuid } = require("uuid");
@@ -28,6 +29,9 @@ const catchAysnc = require("./utils/catchAysnc");
 // const collectottdata=require('./seeds/ottdata');
 const axios = require("axios").default;
 const options = require("./seeds/ottdata");
+const theotorSchema=require('./models/theotor');
+const {theotorLoginRoute}=require('./routes/theotorLogin');
+const {loginRoutes}=require('./routes/loginroutes');
 // const { authenticate } = require("passport");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -53,9 +57,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new passportLocal(userSchema.authenticate()));
-passport.serializeUser(userSchema.serializeUser());
-passport.deserializeUser(userSchema.deserializeUser());
+
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
@@ -70,7 +72,8 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
-
+app.use('/',theotorLoginRoute);
+app.use('/',loginRoutes);
 
 app.get("/", async (req, res) => {
   res.render("firstview");
@@ -129,8 +132,24 @@ app.post('/payment', function(req, res){
 }) 
 
 
+app.get('/adminPage',async (req,res)=>{
+const theotorData=await theotorSchema.find({});
+const movieData=await movieSchema.find({});
+  res.render('adminpage',{theotorData,movieData});
+})
+app.post('/updatemovies', async(req,res)=>{
+  const {movie,theotor,timeSlot}=req.body;
+  const newShow=await showSchema({theotor,timeSlot}).populate('theotor')
 
 
+   await newShow.save()
+
+   const movied= await movieSchema.findById(movie);
+   movied.shows=newShow._id;
+    await movied.populate('shows');
+  // console.log(newShow);
+  console.log(movied);
+})
 app.get("/movies/:_id",catchAysnc(async (req, res) => {
     const { _id } = req.params;
     // console.log(_id);
@@ -160,6 +179,8 @@ app.get("/ott/:_id",catchAysnc(async (req, res) => {
     
   })
 );
+
+
 app.get("/search", async (req, res) => {
   res.render("search");
 });
@@ -183,35 +204,18 @@ app.get("/search", (req, res) => {
   console.log(req.body);
   res.send(req.body);
 });
-app.get("/login", (req, res) => {
-  res.render("login");
-});
 
-app.post("/login",passport.authenticate("local", {failureFlash: true,failureRedirect: "/login",}),
-  async (req, res) => {
-    req.flash('success', 'welcome!!');
-    res.redirect("/movies");
-  }
-);
 
-app.use("/logout",isLoggedIn,catchAysnc((req, res) => {
-    req.logout();
-    req.flash("success", "goodbye");
-    res.redirect("/movies");
-  })
-);
 
-app.get('/theotorlogin', catchAysnc(async (req,res)=>{
-  res.render('theotorLogin');
-}))
 
-app.post('/theotorlogin',passport.authenticate("local", {failureFlash: true,failureRedirect: "/theotorlogin",}) ,catchAysnc( async (req,res)=>{
-  req.flash('success','welcome admin');
-}));
 
-app.get('/theatrelogin', catchAysnc(async (req,res)=>{
-  res.send('done')
-}))
+
+
+
+
+
+
+
 app.get("/:_id/bookings", isLoggedIn, (req, res) => {
   res.render("bookings");
 });

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { type } = require("os");
 
 const schema = mongoose.Schema;
 const movieSchema = new schema({
@@ -59,7 +60,11 @@ details:{
 imdbid:{
   type:String,
   required:true
-}
+},
+shows:[{
+type:mongoose.Types.ObjectId,
+ref:'Shows'}
+]
 });
 
 module.exports=mongoose.model('Movies',movieSchema);
