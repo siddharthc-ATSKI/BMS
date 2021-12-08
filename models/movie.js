@@ -62,8 +62,13 @@ imdbid:{
   required:true
 },
 shows:[{
-type:mongoose.Types.ObjectId,
-ref:'Shows'}
+  theotor:{
+    type:mongoose.Types.ObjectId,
+    ref:'Theotors'
+},
+timeSlot:{
+    type:String
+}}
 ]
 });
 

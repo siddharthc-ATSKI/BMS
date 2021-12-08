@@ -139,22 +139,25 @@ const movieData=await movieSchema.find({});
 })
 app.post('/updatemovies', async(req,res)=>{
   const {movie,theotor,timeSlot}=req.body;
-  const newShow=await showSchema({theotor,timeSlot}).populate('theotor')
+  
 
-
-   await newShow.save()
+  //  await newShow.save()
 
    const movied= await movieSchema.findById(movie);
-   movied.shows=newShow._id;
+  await movied.shows.push({theotor,timeSlot});
     await movied.populate('shows');
-  // console.log(newShow);
-  console.log(movied);
+    await movied.save();
+    req.flash('success','Successfully added');
+  res.redirect('/adminpage')
+  
+  
 })
 app.get("/movies/:_id",catchAysnc(async (req, res) => {
     const { _id } = req.params;
     // console.log(_id);
     const mov= await movieSchema.findById(_id);
     console.log(mov);
+    
   
     
 res.render('show',{mov});
@@ -207,19 +210,24 @@ app.get("/search", (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-app.get("/:_id/bookings", isLoggedIn, (req, res) => {
-  res.render("bookings");
+app.get("/movies/:_id/bookings",async (req, res) => {
+  const {_id}=req.params;
+  const movie_data= await movieSchema.findById(_id).populate('shows.theotor');
+// await movie_data.shows[1].populate('theotor');
+// console.log( movie_data.shows)
+  // await movie_data.shows.populate('theotor');
+  // for(let i of movie_data.shows){
+  //   const a=theotorSchema.findById(i.theotor);
+  //   console.log(a);
+  // } 
+  // console.log(movie_data)
+  // const theotor_data= await theotorSchema.findById(movie_data.shows[0]);
+  res.render("selectslot",{movie_data});
+  // res.send('connected')
 });
-
+app.get('/movies/:_id/bookings/:timeSlot',(req,res)=>{
+res.render('bookings');
+})
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page not found", 400));
   // res.send('404')
