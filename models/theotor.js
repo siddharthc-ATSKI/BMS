@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const passportLocalMongoose=require('passport-local-mongoose');
+
 const schema = mongoose.Schema;
 
 const theotorSchema= new schema({
@@ -19,10 +19,7 @@ const theotorSchema= new schema({
       ref:'Review'
     }
   ],
-  MovieHistory:[{
-      type:mongoose.Types.ObjectId,
-      ref:"MovieSchema"
-  }],
+  
   opened:{
       type:String
   },
@@ -37,5 +34,5 @@ const theotorSchema= new schema({
   }
 })
 
-theotorSchema.plugin(passportLocalMongoose);
+
 module.exports=mongoose.model('Theotors',theotorSchema);

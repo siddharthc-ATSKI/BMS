@@ -68,6 +68,9 @@ shows:[{
 },
 timeSlot:{
     type:String
+},
+date:{
+  type:String
 }}
 ]
 });
