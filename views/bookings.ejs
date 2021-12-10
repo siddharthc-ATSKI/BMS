@@ -1,0 +1,106 @@
+<%- layout('/layouts/boilerplates') %> 
+<link rel="stylesheet" href="/views/style.css" type="text/css">
+<div class="movie-container" >
+<form action="<%= mov._id %>/payment  " class="row g-3" >
+   <div class="col-md-4 " id="inputcontrol">
+     <label  for="movie" class="form-label" id="entermovie">Enter Movie:</label>
+<input type="text" class="form-control " id="movie" name="movie" placeholder="Enter" required>
+</div>
+<div class="col-md-4" id="labelcontrol">
+<label for="seats" class="form-label" id="enterseats">Number Of Seats:</label>
+<input type="number" class="form-control " id="seats" name="seats" min="0" placeholder="Seats" required>
+</div>
+</div>
+<ul class="showcase">
+    <li>
+      <div class="seat"></div>
+      <small>Available</small>
+    </li>
+    <li>
+      <div class="seat selected"></div>
+      <small>Selected</small>
+    </li>
+    <li>
+      <div class="seat occupied"></div>
+      <small>Occupied</small>
+    </li>
+  </ul>
+  <div class="container">
+    <div class="screen"></div>
+  <div class="row">
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+ <div class="row">
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat occupied"></div>
+      <div class="seat "></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+  <div class="row">
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat occupied"></div>
+      <div class="seat "></div>
+    </div>
+  <div class="row">
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+  <div class="row">
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat "></div>
+      <div class="seat occupied"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+    </div>
+  <div class="row">
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat"></div>
+      <div class="seat occupied"></div>
+      <div class="seat "></div>
+      <div class="seat occupied"></div>
+      <div class="seat"></div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-12" >
+      <p class="text text-center">
+         Total Seats : <span id="count">0</span> <br> Total Price is: Rs.<span
+           id="price"
+           >0</span>
+        </p>
+        <div> </div>
+          </div>
+      <div class="col-6 d-flex justify-content-center" >
+         <button id="button" class="btn btn-primary mx-auto " disabled>Confirm</button>
+      </div>
+      </div>
+</form>
+    <script src="/views/booking.js" type="text/javascript"></script>
+

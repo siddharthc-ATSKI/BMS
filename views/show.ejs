@@ -1,0 +1,19 @@
+<% layout('/layouts/boilerplates') %> 
+
+
+ 
+<% if(mov.Poster){ %> 
+  <div class="col  ">
+<div class=" col-4 card m-3" style="width: 18rem;">
+  <img class="card-img-top" src="<%= mov.Poster %> " alt="Card image cap">
+  </div></div>
+  <% }%>
+<p> <%= mov.imdbRating %></p>
+<p> <%= mov.released %></p>
+<p> <%= mov.runtime %></p>
+<p> <%= mov.details %></p>
+
+
+<a class="button" href="/<%=mov._id%>/bookings"> Book SEATS</a>
+
+<a class="button" href="/">Back</a>
