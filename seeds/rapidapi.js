@@ -18,7 +18,7 @@ const data= [
       },
       {
         imageurl: [
-          "https://m.media-amazon.com/images/M/MV5BMmUyYTU5MjItMGNhOC00ZGFhLTkwYjctMjBmNTlkOTIzYmM1XkEyXkFqcGdeQXVyOTUyOTM3MDc@._V1_UY268_CR110,0,182,268_AL_.jpg"
+          "https://cdn.hiconsumption.com/wp-content/uploads/2020/03/Best-Movie-Remakes-Reboots-0-Hero.jpg "
         ],
         genre: [
           "Action",

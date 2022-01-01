@@ -15,7 +15,7 @@ module.exports = {
   },
   headers: {
     'x-rapidapi-host': 'ott-details.p.rapidapi.com',
-    'x-rapidapi-key': '7b7e8679c8mshd689823a71c887dp19505fjsnfe7fc3812c2b'
+    'x-rapidapi-key': ''
   }
 };
 // const collectdata= ()=>{

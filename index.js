@@ -88,44 +88,44 @@ app.get(
 );
 
 //payment section
-
-app.get("/gateway", function (req, res) {
-  res.render("gateway", {
-    key: Publishable_Key,
-  });
-});
-
-app.post("/payment", function (req, res) {
-  // Moreover you can take more details from user
-  // like Address, Name, etc from form
-  stripe.customers
-    .create({
-      email: req.body.stripeEmail,
-      source: req.body.stripeToken,
-      name: "Gautam Sharma",
-      address: {
-        line1: "TC 9/4 Old MES colony",
-        postal_code: "110092",
-        city: "New Delhi",
-        state: "Delhi",
-        country: "India",
-      },
-    })
-    .then((customer) => {
-      return stripe.charges.create({
-        amount: 7000, // Charing Rs 25
-        description: "Web Development Product",
-        currency: "INR",
-        customer: customer.id,
-      });
-    })
-    .then((charge) => {
-      res.send("Success"); // If no error occurs
-    })
-    .catch((err) => {
-      res.send(err); // If some error occurs
-    });
-});
+//app.get("/gateway", function (req, res) {
+//  res.render("gateway", {
+//    key: Publishable_Key,
+//  });
+//});
+//
+//app.post("/payment", function (req, res) {
+//  // Moreover you can take more details from user
+//  // like Address, Name, etc from form
+//  stripe.customers
+//    .create({
+//      email: req.body.stripeEmail,
+//      source: req.body.stripeToken,
+//      name: "Gautam Sharma",
+//      address: {
+//        line1: "TC 9/4 Old MES colony",
+//        postal_code: "110092",
+//        city: "New Delhi",
+//        state: "Delhi",
+//        country: "India",
+//      },
+//    })
+//    .then((customer) => {
+//      return stripe.charges.create({
+//        amount: 7000, // Charing Rs 25
+//        description: "Web Development Product",
+//        currency: "INR",
+//        customer: customer.id,
+//      });
+//    })
+//    .then((charge) => {
+//      res.render("bookings")
+//      res.send("Success"); // If no error occurs
+//    })
+//    .catch((err) => {
+//      res.send(err); // If some error occurs
+//    });
+//});
 
 app.get("/adminPage", isAdmin,async (req, res) => {
   const theotorData = await theotorSchema.find({});
@@ -177,6 +177,49 @@ app.get(
   })
 );
 
+app.get("/:_id/bookings",catchAysnc((req,res)=>{
+res.render("ottpayments",{key:Publishable_Key,})
+}));
+
+
+app.post("/:_id/bookings/payment", function (req, res) {
+  // Moreover you can take more details from user
+  // like Address, Name, etc from form
+  stripe.customers
+    .create({
+      email: req.body.stripeEmail,
+      source: req.body.stripeToken,
+      name: "Gautam Sharma",
+      address: {
+        line1: "TC 9/4 Old MES colony",
+        postal_code: "110092",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+      },
+    })
+    .then((customer) => {
+      return stripe.charges.create({
+        amount: 5000, // Charing Rs 25
+        description: "Web Development Product",
+        currency: "INR",
+        customer: customer.id,
+      });
+    })
+    .then((charge) => {
+      res.render("showpage")
+      //res.send("Success"); // If no error occurs
+    })
+    .catch((err) => {
+      res.send(err); // If some error occurs
+    });
+});
+
+
+
+
+
+
 app.get("/search", async (req, res) => {
   res.render("search");
 });
@@ -214,8 +257,43 @@ app.get("/movies/:_id/bookings/:timeSlot/:date", isLoggedIn,async (req, res) => 
   
   const movieDATA = await movieSchema.findById(_id).populate("shows.theotor");
   console.log(movieDATA)
-  res.render("bookings", { movieDATA, timeSlot ,date});
+  res.render("bookings", { movieDATA, timeSlot ,date,key:Publishable_Key,});
 });
+
+app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
+  // Moreover you can take more details from user
+  // like Address, Name, etc from form
+  stripe.customers
+    .create({
+      email: req.body.stripeEmail,
+      source: req.body.stripeToken,
+      name: "Gautam Sharma",
+      address: {
+        line1: "TC 9/4 Old MES colony",
+        postal_code: "110092",
+        city: "New Delhi",
+        state: "Delhi",
+        country: "India",
+      },
+    })
+    .then((customer) => {
+      return stripe.charges.create({
+        amount: 20000, // Charing Rs 25
+        description: "Web Development Product",
+        currency: "INR",
+        customer: customer.id,
+      });
+    })
+    .then((charge) => {
+      res.render("showpage")
+      //res.send("Success"); // If no error occurs
+    })
+    .catch((err) => {
+      res.send(err); // If some error occurs
+    });
+});
+
+
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page not found", 400));
   // res.send('404')
