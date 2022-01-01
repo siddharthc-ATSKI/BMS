@@ -235,7 +235,11 @@ function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
 }
+<<<<<<< HEAD
 var s=0;
+=======
+var s;
+>>>>>>> 3c5c894084eb8f97bf8d80639e22fd31ef859ede
 // Update total and count
 function updateSelectedCount(s) {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -251,7 +255,11 @@ function updateSelectedCount(s) {
   s=selectedSeatsCount * 200;
  
   setMovieData(movieSelect.selectedIndex, movieSelect.value);
+<<<<<<< HEAD
   return s;
+=======
+  console.log(s); 
+>>>>>>> 3c5c894084eb8f97bf8d80639e22fd31ef859ede
 }
 
 // Get data from localstorage and populate UI
@@ -305,7 +313,11 @@ min=5;
 		src="//checkout.stripe.com/v2/checkout.js"
 		class="stripe-button"
 		data-key="<%= key %>" 
+<<<<<<< HEAD
 		data-amount=min
+=======
+		data-amount=s
+>>>>>>> 3c5c894084eb8f97bf8d80639e22fd31ef859ede
 		data-currency="inr" 
 		data-name="Movie tickets" 
 		data-description="Buy" 
