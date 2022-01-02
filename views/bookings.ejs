@@ -118,6 +118,7 @@ p.text span {
   color: #6feaf6;
 }
 </style>
+<p>We have a price of  200/-  per seat for all kind of movies</p>
 <div class="container">
 
 
@@ -210,12 +211,12 @@ p.text span {
       </div>
     
       <p class="text">
-        You have selected <span id="count">0</span> seats for a price of $<span
-          id="total"
-          >0</span
+        You have selected <span id="count">0</span> seats for a price of ₹<span
+         id="total" >0</span
         >
       </p>
 </div>
+
 
 
 <script>
@@ -234,9 +235,9 @@ function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
 }
-
+var s=0;
 // Update total and count
-function updateSelectedCount() {
+function updateSelectedCount(s) {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
 
   const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
@@ -246,9 +247,11 @@ function updateSelectedCount() {
   const selectedSeatsCount = selectedSeats.length;
 
   count.innerText = selectedSeatsCount;
-  total.innerText = selectedSeatsCount * ticketPrice;
-  
+  total.innerText = selectedSeatsCount * 200;
+  s=selectedSeatsCount * 200;
+ 
   setMovieData(movieSelect.selectedIndex, movieSelect.value);
+  return s;
 }
 
 // Get data from localstorage and populate UI
@@ -274,7 +277,7 @@ function populateUI() {
 movieSelect.addEventListener('change', e => {
   ticketPrice = +e.target.value;
   setMovieData(e.target.selectedIndex, e.target.value);
-  updateSelectedCount();
+  updateSelectedCount(0);
 });
 
 // Seat click event
@@ -285,18 +288,31 @@ container.addEventListener('click', e => {
   ) {
     e.target.classList.toggle('selected');
 
-    updateSelectedCount();
+    var m=updateSelectedCount(0);
+    console.log("m",m);
   }
 });
 
 // Initial count and total set
-updateSelectedCount();
+n=updateSelectedCount(0);
+console.log("n",n);
+min=5;
 </script>
 
 
+<form action="/movies/:_id/bookings/:timeSlot/payment" method="POST"> 
+	<script
+		src="//checkout.stripe.com/v2/checkout.js"
+		class="stripe-button"
+		data-key="<%= key %>" 
+		data-amount=min
+		data-currency="inr" 
+		data-name="Movie tickets" 
+		data-description="Buy" 
+		data-locale="auto" > 
+		</script> 
+	</form> 
+ 
 
-
-<a class="btn btn-primary" data-bs-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample"
-href="/gateway">Pay </a>
 
 

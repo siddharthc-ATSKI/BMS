@@ -11,11 +11,8 @@
   <div class="container-fluid">
 
     <div class="row">
-      <h1>Treding Movies</h1>
+      <h1><span style="color:rgb(200,170,30);">Trending Movies</span></h1>
       <div class="owl-carousel owl-theme">
-
-
-
 
         <% for(let m of data){ %> 
           
@@ -39,7 +36,7 @@
       </div>
     </div>
     <div class="row">
-      <h1>Recommded Movies</h1>
+      <h1>Recommended Movies</h1>
       <div class="owl-carousel owl-theme">
 
 
@@ -70,7 +67,7 @@
 
     <div class="row">
       <h1>Top Online Streaming</h1>
-      <div class="owl-carousel owl-theme">
+      <div class="owl-carousel owl-theme"> 
 
 
         <% for(let m of data){ %> 
@@ -87,18 +84,29 @@
             </form>
 
           </div>
-        </div>
+         </div>  
       </div>
+      
        
         <% } %> 
 
       
 
 
+
       </div>
     </div>
 
   </div>
+  
+  <style>
+    body {
+    background: #141414;
+   
+  }
+  
+  </style>
+
   <img
     src="../seeds/testImages/img/MV5BM2FhM2E1MTktMDYwZi00ODA1LWI0YTYtN2NjZjM3ODFjYmU5XkEyXkFqcGdeQXVyMjY1ODQ3NTA@._V1_SY500_CR0,0,337,500_AL_.jpg"
     alt="" srcset="">
@@ -110,33 +118,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
     integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  
+  
+  
+  
+  
   <script>
     var owl = $('.owl-carousel');
+
+
+
 owl.owlCarousel({
+    items:4,
     loop:true,
-    nav:true,
-    margin:5,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },            
-        960:{
-            items:4
-        },
-        1200:{
-            items:4
-        }
-    }
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true
 });
-owl.on('mousewheel', '.owl-stage', function (e) {
-    if (e.deltaY>0) {
-        owl.trigger('next.owl');
-    } else {
-        owl.trigger('prev.owl');
-    }
-    e.preventDefault();
-});
+
   </script>
