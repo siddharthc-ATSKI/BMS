@@ -1,0 +1,142 @@
+<% layout('/layouts/boilerplates') %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+  <div class="container-fluid">
+
+    <div class="row">
+      <h1><span style="color:rgb(200,170,30);">Trending Movies</span></h1>
+      <div class="owl-carousel owl-theme">
+
+        <% for(let m of data){ %> 
+          
+          <div class="col  ">
+      <div class=" col-4 card m-3" style="width: 18rem;">
+          <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+          <div class="card-body">
+          
+            <h5 class="card-title"><%= m.Title %> </h5>
+            
+            <form action="/movies/<%= m._id %>" method="get">
+              <button type="submit" class="btn btn-info">View</button>
+            </form>
+          </div>
+        </div>
+      </div>
+     
+        <% } %> 
+
+
+      </div>
+    </div>
+    <div class="row">
+      <h1><span style="color:rgb(200,170,30);">Recommended Movies</span></h1>
+      <div class="owl-carousel owl-theme">
+
+
+        <% for(let m of data){ %> 
+           
+          <div class="col  ">
+      <div class=" col-4 card m-3" style="width: 18rem;">
+          <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+          <div class="card-body">
+          
+            <h5 class="card-title"><%= m.Title %> </h5>
+           
+            <form action="/movies/<%= m._id %>" method="get">
+              <button type="submit" class="btn btn-info">View</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+       
+        <% } %> 
+
+      
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <h1><span style="color:rgb(200,170,30);">Top Online Streaming</span></h1>
+      <div class="owl-carousel owl-theme"> 
+
+
+        <% for(let m of data){ %> 
+           
+          <div class="col  ">
+      <div class=" col-4 card m-3" style="width: 18rem;">
+          <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+          <div class="card-body">
+          
+            <h5 class="card-title"><%= m.Title %> </h5>
+           
+            <form action="/movies/<%= m._id %>" method="get">
+              <button type="submit" class="btn btn-info">View</button>
+            </form>
+
+          </div>
+         </div>  
+      </div>
+      
+       
+        <% } %> 
+
+      
+
+
+
+      </div>
+    </div>
+
+  </div>
+  
+  <style>
+    body {
+    background: #141414;
+   
+  }
+  
+  </style>
+
+  <img
+    src="../seeds/testImages/img/MV5BM2FhM2E1MTktMDYwZi00ODA1LWI0YTYtN2NjZjM3ODFjYmU5XkEyXkFqcGdeQXVyMjY1ODQ3NTA@._V1_SY500_CR0,0,337,500_AL_.jpg"
+    alt="" srcset="">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  
+  
+  
+  
+  
+  
+  <script>
+    var owl = $('.owl-carousel');
+
+
+
+owl.owlCarousel({
+    items:4,
+    loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true
+});
+
+  </script>

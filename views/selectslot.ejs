@@ -1,0 +1,22 @@
+<% layout('/layouts/boilerplates') %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+
+<% for(let d of movie_data.shows){ %> 
+  <% console.log(d.name) %> 
+            <div class="card w-75">
+                <div class="card-body">
+                  <h5 class="card-title"><%= d.theotor.name %>  </h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                 <form action="/movies/<%= movie_data._id%>/bookings/<%= d.timeSlot %>/<%= d.date %>  " method="get">
+                   <button> <%= d.timeSlot %> <%= d.date %> </button>
+                 </form>
+                </div>
+              </div>
+<% } %> 
+        </div>
+    </div>
+</div>
