@@ -8,6 +8,7 @@ var Secret_Key =
   "sk_test_51K1bYMSBA7A7Kw5YnoAfMI7Z3puR5PCdSszk40iMBkkkw3obKjfKs5lD1wbyxJ5XXj8Nak5Lh2TVCjoCkF76eiNA00DzDzt0ai";
 
 const express = require("express");
+const date = require('date-and-time');
 const app = express();
 const path = require("path");
 const stripe = require("stripe")(Secret_Key);
@@ -247,6 +248,7 @@ app.get("/search", (req, res) => {
 app.get("/movies/:_id/bookings", isLoggedIn,async (req, res) => {
   const { _id } = req.params;
   const movie_data = await movieSchema.findById(_id).populate("shows.theotor");
+ 
 //  console.log(movie_data.shows[0].theotor)
   res.render("selectslot",  {movie_data} );
   // res.send('connected')

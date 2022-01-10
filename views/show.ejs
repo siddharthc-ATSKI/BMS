@@ -1,7 +1,6 @@
-<% layout('/layouts/boilerplates') %> 
+<% layout('/layouts/boilerplate2') %> 
 
 
- <div>
 <!-- <% if(mov.Poster){ %> 
   <div class="col  ">
 <div class=" col-4 card m-3" style="width: 18rem;">
@@ -92,7 +91,7 @@
 
 <style>
 body{
-  overflow:hidden;
+  overflow:scroll;
   font-family:Arial;
   text-shadow: 0px 0px 5px rgba(0,0,0,0.3);
     -webkit-touch-callout: none; /* iOS Safari */
@@ -106,7 +105,7 @@ a:link, a:visited,  a:hover, a:active
 {
     color: #ffffff;
     text-decoration: none;
-}
+} 
 
 #BTN_Back{
   opacity:0.6; /*hover*/
@@ -134,7 +133,7 @@ a:link, a:visited,  a:hover, a:active
 #Background img {
   display: block;
   width: 90%;
-  height: 70%;
+  height: 100%;
   object-fit: cover;
 }
 #Background{ 
@@ -144,7 +143,7 @@ a:link, a:visited,  a:hover, a:active
   top:13%;
   left:0;
   width:120%;
-  height:120%;
+  height:100%;
     
   background-repeat:no-repeat;
   background-size:cover;
@@ -356,8 +355,4 @@ box-shadow: 0px 10px -10px 0px rgba(30,30,30,1);
 }
 
 </style> 
-</div>
-<div>
-<button type="button" class="btn btn-outline-warning"><a class="button" href="/movies/<%=mov._id%>/bookings"> Book SEATS</a></button>
-</div>
-<button type="button" class="btn btn-outline-warning"><a class="button" href="/">Back</a></button>
+
