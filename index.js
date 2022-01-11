@@ -208,6 +208,7 @@ app.post("/:_id/bookings/payment", function (req, res) {
       });
     })
     .then((charge) => {
+      console.log(charge);
       res.render("showpage")
       //res.send("Success"); // If no error occurs
     })
