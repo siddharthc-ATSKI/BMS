@@ -236,8 +236,9 @@ app.post(
     const newUser = new userSchema({ username, email, mobilenumber });
     // await newUser.save();
     const newU = await userSchema.register(newUser, password);
-    console.log(newU);
-    res.send("sent");
+    // console.log(newU);
+    req.flash("success", "welcome!!");
+    res.redirect("/movies");
   })
 );
 app.get("/search", (req, res) => {

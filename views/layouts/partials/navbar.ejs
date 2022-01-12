@@ -65,7 +65,7 @@
   .menu__item {
     display: block;
     padding: 12px 24px;
-    color: #333;
+    color: rgb(0, 0, 0);
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 600;
@@ -119,11 +119,9 @@
  <div class="collapse navbar-collapse" id="userPanel">
    <ul  id="userPanelList">
     <% if(!currentUser){ %> 
+     
       <li class="nav-item active">
-        <a class="nav-link userPanel" href="/register">Register </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link userPanel" href="/login">Login </a>
+        <a class="nav-link userPanel" href="/login">Sign In</a>
       </li>
       <% }else{ %> 
       <li class="nav-item active">
@@ -141,11 +139,11 @@
   </label>
 
   <ul class="menu__box">
-    <li><a class="menu__item" href="#">Home</a></li>
-    <li><a class="menu__item" href="#">About</a></li>
-    <li><a class="menu__item" href="#">Team</a></li>
-    <li><a class="menu__item" href="#">Contact</a></li>
-    <li><a class="menu__item" href="#">Twitter</a></li>
+    <li><a class="menu__item" style="color: rgb(29, 27, 27); text-shadow:none" href="#">Home</a></li>
+    <li><a class="menu__item" style="color: rgb(29, 27, 27); text-shadow:none" href="#">About</a></li>
+    <li><a class="menu__item" style="color: rgb(29, 27, 27);text-shadow:none" href="#">Team</a></li>
+    <li><a class="menu__item" style="color: rgb(29, 27, 27);text-shadow:none" href="#">Contact</a></li>
+    <li><a class="menu__item" style="color: rgb(29, 27, 27); text-shadow:none" href="#">Twitter</a></li>
   </ul>
 </div>
 </nav>
