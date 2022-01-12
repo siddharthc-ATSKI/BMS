@@ -23,7 +23,7 @@
     width: 26px;
     height: 26px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 5;
   }
   .menu__btn > span,
   .menu__btn > span::before,
@@ -34,14 +34,17 @@
     height: 2px;
     background-color: #616161;
     transition-duration: 0.25s;
+    z-index: 5;
   }
   .menu__btn > span::before {
     content: '';
     top: -8px;
+    z-index: 5;
   }
   .menu__btn > span::after {
     content: '';
     top: 8px;
+    z-index: 5;
   }
   .menu__box {
     display: block;
@@ -56,6 +59,7 @@
     background-color: #ECEFF1;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
     transition-duration: 0s;
+    z-index: 3;
     
   }
   .menu__item {
