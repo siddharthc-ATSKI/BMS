@@ -143,7 +143,7 @@ app.post("/updatemovies", isAdmin,async (req, res) => {
   const movied = await movieSchema.findById(movie);
   // await movied.shows.push({ timeSlot });
   await movied.shows.push({ theotor,timeSlot ,date});
-  console.log(movied.shows)
+  // console.log(movied.shows)
   // await movied.populate("shows");
   await movied.save();
   req.flash("success", "Successfully added");
