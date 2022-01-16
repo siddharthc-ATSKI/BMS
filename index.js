@@ -190,25 +190,29 @@ app.post("/:_id/bookings/payment", function (req, res) {
     .create({
       email: req.body.stripeEmail,
       source: req.body.stripeToken,
-      name: "Gautam Sharma",
+      name: req.body.stripeEmail,
+     
       address: {
         line1: "TC 9/4 Old MES colony",
         postal_code: "110092",
         city: "New Delhi",
         state: "Delhi",
         country: "India",
+        
       },
     })
     .then((customer) => {
       return stripe.charges.create({
         amount: 5000, // Charing Rs 25
-        description: "Web Development Product",
+        description: "BMS",
         currency: "INR",
         customer: customer.id,
       });
     })
     .then((charge) => {
+      console.log(m)
       console.log(charge);
+      
       res.render("showpage")
       //res.send("Success"); // If no error occurs
     })
@@ -217,9 +221,28 @@ app.post("/:_id/bookings/payment", function (req, res) {
     });
 });
 
-
-
-
+//invoice
+//const product = stripe.products.create({name: 'BMS'});
+//const price =  stripe.prices.create({
+//  product: '{{PRODUCT_ID}}',
+//  unit_amount: 1000,
+//  currency: 'INR',
+//  recurring: {interval: 'month'},
+//});
+//
+//const invoiceItem =  stripe.invoiceItems.create({
+//  customer:customer.id,
+//  price: 5,
+//});
+//const invoice = stripe.invoices.create({
+//  customer: customer.id,
+//  auto_advance: true, // Auto-finalize this draft after ~1 hour
+//  collection_method: 'charge_automatically'
+//});
+//const invoice =  stripe.invoices.sendInvoice(
+//  'in_18jwqyLlRB0eXbMtrUQ97YBw'
+//);
+//
 
 
 app.get("/search", async (req, res) => {
@@ -272,29 +295,38 @@ app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
       email: req.body.stripeEmail,
       source: req.body.stripeToken,
       name: "Gautam Sharma",
+    
       address: {
         line1: "TC 9/4 Old MES colony",
         postal_code: "110092",
         city: "New Delhi",
         state: "Delhi",
         country: "India",
+        
       },
     })
     .then((customer) => {
       return stripe.charges.create({
         amount: 20000, // Charing Rs 25
-        description: "Web Development Product",
+        description: "BMS",
         currency: "INR",
         customer: customer.id,
       });
     })
     .then((charge) => {
       res.render("showpage")
+      
       //res.send("Success"); // If no error occurs
     })
     .catch((err) => {
       res.send(err); // If some error occurs
     });
+});
+const paymentIntent =  stripe.paymentIntents.create({
+  amount: 1099,
+  currency: 'INR',
+  payment_method_types: ['card'],
+  receipt_email: 'atharvaapkare@gmail.com',
 });
 
 
