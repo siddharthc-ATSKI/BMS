@@ -1,9 +1,26 @@
 <% layout('/layouts/boilerplates') %>
-<P>  RENT THIS SHOW TO WATCH IT ON BELOW GIVEN PLATFORMS</P>
+<div class="k"><%= s.Title %> </div>  
+<P> Rent and watch it on below given platforms</P>
+
+<P>YOU'LL LOVE THIS SHOW COS'</P>
+<% if (s.imdbRating ){%>
+<LI> IT HAS  AN IMDB RATING OF <%= s.imdbRating %></LI>
+<% }%>
+<% if (s.released){%>
+<li>IT WAS RELEASED <%= s.released %></li>
+<% }%>
+<% if (s.runtime){%>
+<li> And it is <%= s.runtime %> long </li>
+<% }%>
+<p></p>
+
+
+
+
 <form action="/movies/:_id/bookings/:timeSlot/payment" method="POST"> 
 	<script
 		src="//checkout.stripe.com/v2/checkout.js"
-		class="stripe-button"
+		class=" stripe-button  "
 		data-key="<%= key %>" 
 		data-amount="5000" 
 		data-currency="inr" 
@@ -13,3 +30,47 @@
 		</script> 
 	</form> 
  
+
+
+	<style>
+		* {
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		}
+		
+		
+		
+		a {
+		text-decoration: none;
+		color: #000;
+		}
+		
+		
+		p {
+			font-family:Georgia, 'Times New Roman', Times, serif;
+			font-weight: 500;
+			font-size: x-large;
+			color:aliceblue;
+			
+		}
+		.k {
+			font-style: italic;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			font-weight: 600;
+			font-size: xx-large;
+			color:#fa07d9;
+		}
+		li {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-weight: 300;
+			font-size: large;
+			color:#faea08;
+		}
+		
+		body {
+		font-family:Bold,Helvetica,Arial,sans-serif;
+		background-color:rgb(48, 49, 47);
+		
+		}
+		</style>
