@@ -1,13 +1,13 @@
 <% layout('/layouts/boilerplates') %>
 <P>  RENT THIS SHOW TO WATCH IT ON BELOW GIVEN PLATFORMS</P>
-<form action="ott/:_id/bookings/payment" method="POST"> 
+<form action="/movies/:_id/bookings/:timeSlot/payment" method="POST"> 
 	<script
 		src="//checkout.stripe.com/v2/checkout.js"
 		class="stripe-button"
 		data-key="<%= key %>" 
 		data-amount="5000" 
 		data-currency="inr" 
-		data-name="Movie tickets" 
+		data-name="RENT SHOW" 
 		data-description="Buy" 
 		data-locale="auto" > 
 		</script> 

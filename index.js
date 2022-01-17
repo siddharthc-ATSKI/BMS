@@ -168,7 +168,7 @@ app.get(
   })
 );
 app.get(
-  "/ott/:_id",
+  "/ott/:_id",isLoggedIn,
   catchAysnc(async (req, res) => {
     const { _id } = req.params;
     // console.log(_id);
@@ -178,19 +178,22 @@ app.get(
   })
 );
 
-app.get("/:_id/bookings",catchAysnc((req,res)=>{
-res.render("ottpayments",{key:Publishable_Key,})
+app.get("/ott/:_id/bookings",isLoggedIn,catchAysnc(async (req,res)=>{
+  const { _id } = req.params;
+  const s = await movieSchema.findById(_id);
+res.render("ottpayments",{s,_id,key:Publishable_Key,})
 }));
 
 
-app.post("/:_id/bookings/payment", function (req, res) {
+
+app.post("/ott/:_id/bookings/payment",  function (req, res)  {
   // Moreover you can take more details from user
   // like Address, Name, etc from form
   stripe.customers
     .create({
       email: req.body.stripeEmail,
       source: req.body.stripeToken,
-      name: req.body.stripeEmail,
+      name: "gg",
      
       address: {
         line1: "TC 9/4 Old MES colony",
@@ -203,18 +206,18 @@ app.post("/:_id/bookings/payment", function (req, res) {
     })
     .then((customer) => {
       return stripe.charges.create({
-        amount: 5000, // Charing Rs 25
+        amount: 5000, // Charing Rs 50
         description: "BMS",
         currency: "INR",
         customer: customer.id,
       });
     })
     .then((charge) => {
-      console.log(m)
+      console.log(m);
       console.log(charge);
       
-      res.render("showpage")
-      //res.send("Success"); // If no error occurs
+      res.render("showpage2");
+      res.send("Success"); // If no error occurs
     })
     .catch((err) => {
       res.send(err); // If some error occurs
