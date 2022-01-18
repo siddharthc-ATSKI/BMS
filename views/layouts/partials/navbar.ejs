@@ -77,6 +77,7 @@
   }
 
   #userPanel {
+    position: relative;
     margin-left: 50rem;
    
   }
@@ -116,7 +117,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" >Search</button>
     </form>
   </div> -->
- <div class="collapse navbar-collapse" id="userPanel">
+ <!--<div class="collapse navbar-collapse" id="userPanel">-->
    <ul  id="userPanelList">
     <% if(!currentUser){ %> 
      
@@ -131,7 +132,7 @@
    </ul>
   
 
- </div>
+ <!--</div>-->
  <div class="hamburger-menu">
   <input id="menu__toggle" type="checkbox" />
   <label class="menu__btn" for="menu__toggle">
@@ -139,7 +140,7 @@
   </label>
 
   <ul class="menu__box">
-    <li><a class="menu__item" style="color: rgb(29, 27, 27); text-shadow:none" href="#">Home</a></li>
+    <li><a class="menu__item" style="color: rgb(29, 27, 27); text-shadow:none" href="/movies">Home</a></li>
     <li><a class="menu__item" style="color: rgb(29, 27, 27); text-shadow:none" href="#">About</a></li>
     <li><a class="menu__item" style="color: rgb(29, 27, 27);text-shadow:none" href="#">Team</a></li>
     <li><a class="menu__item" style="color: rgb(29, 27, 27);text-shadow:none" href="#">Contact</a></li>
