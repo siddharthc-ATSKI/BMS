@@ -1,0 +1,78 @@
+<!-- <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        
+            <% for(let m of movies){ %> 
+             
+              <% if(m.Poster){ %>  <div class="col  ">  
+            <div class=" col-4 card" style="width: 18rem;">
+                <img class="card-img-top" src="<%= m.Poster %> " alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><%= m.Title %> </h5>
+                  <p class="card-text"><%= m.details %> </p>
+               
+                </div>
+              </div>
+            </div>
+            <% } %> 
+              <% } %> 
+        
+    </div>
+</div> -->
+
+
+
+
+
+
+
+<% for(let m of movies){ %>
+
+  <% if(m.posterurl){ %>
+    <div class="col item m-3 ">
+      <div class=" col-4 card" style="width: 15rem;">
+        <img class="card-img-top"
+          src="<%= m.posterurl %> "
+          alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= m.title %>
+          </h5>
+          <!-- <p class="card-text"><%= m.storyline %> </p> -->
+          <!-- <ul class="list-group list-group-flush">
+            <li class="list-group-item">imdB Rating:<%= m.imdbRating %> </li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul> -->
+
+        </div>
+      </div>
+    </div>
+    <% } %>
+      <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+      <p class="card-text"><%= m.synopsis %> </p>
+      <!-- <form action="/movies/<%= m.imdbid %>" method="get">
+        <button>View</button>
+      </form> -->
+
+
+
+
+
+
+
+
+
+      

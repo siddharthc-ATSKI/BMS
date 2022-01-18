@@ -1,0 +1,69 @@
+<% layout('/layouts/boilerplates') %>
+
+
+
+
+<img src="https://www.ayresadventures.com/wp-content/uploads/2014/02/BMS-Logo.png" alt="BMS" class="center">
+
+
+
+<div class="content">
+<% if(!currentUser){ %> 
+      
+        <a class="btn btn-primary btn-lg" 
+         href="/register">Register </a>
+         
+
+            
+         
+         
+        <a class="btn btn-primary btn-lg" 
+        href="/login">Login </a>
+    
+ 
+
+    <% }else{ %> 
+    
+        <a class="btn btn-primary btn-lg" 
+        href="/logout">Logout </a>
+    
+  <% } %>
+    </div>
+
+
+<style>
+body {
+  font-family:Helvetica,Arial,sans-serif;
+  background-color:rgb(48, 49, 47);
+  
+}
+
+.center {
+    z-index:-1;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.btn-primary{
+display:inline-block;
+
+padding:0.5%;
+margin:2%;
+position:relative;
+top:100%;
+bottom:30%;
+left:40%;
+background-color:rgb(73, 82, 163);
+
+}
+
+</style>
+ <!--<img src="https://www.ayresadventures.com/wp-content/uploads/2014/02/BMS-Logo.png"
+ style=”width:400px;height:400px;>-->
+
+
+
+
+ 

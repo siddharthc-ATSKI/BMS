@@ -1,0 +1,46 @@
+<% layout('/layouts/boilerplates') %>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6 offset-3">
+<form action="/updatemovies" method="post">
+    <div>
+        <label for="theotor">Choose a Theotor:</label>
+
+        <select name="theotor" id="theotor">
+            <% for(let t of theotorData){ %> 
+          <option value="<%= t._id %>"><%= t.name %> </option>
+         <% } %> 
+        </select>
+    </div>
+   
+<div>
+    <label for="movie">Choose a Movie:</label>
+
+    <select name="movie" id="movie">
+        <% for(let t of movieData){ %> 
+      <option value="<%= t._id %>"><%= t.Title %> </option>
+     <% } %> 
+    </select>
+</div>
+<div>
+    <label for="timeSlot">
+        Select time slot:
+    </label>
+    <select name="timeSlot" id="timeSlot">
+        <option value="11-1">11-1</option>
+        <option value="1:30-4:30">1:30-4:30</option>
+        <option value="5-8">5-8</option>
+        <option value="9-11">9-11</option>
+        
+    </select>
+</div>
+<label for="date">Enter data:</label>
+<input type="date" name="date" id="date">
+    <button>Submit</button>
+</form>
+
+        </div>
+    </div>
+</div>

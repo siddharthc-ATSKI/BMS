@@ -1,0 +1,359 @@
+<% layout('/layouts/boilerplate2') %> 
+
+
+<!-- <% if(mov.Poster){ %> 
+  <div class="col  ">
+<div class=" col-4 card m-3" style="width: 18rem;">
+  <img class="card-img-top" src="<%= mov.Poster %> " alt="Card image cap">
+  </div></div>
+  <% }%>
+  
+  <p> Title-<%= mov.Title %></p>
+  <p>Genre- <%= mov.genre %></p>
+<p>Ratings- <%= mov.imdbRating %></p>
+<p> <%= mov.released %></p>
+<p> <%= mov.runtime %></p>
+<p> <%= mov.details %></p> -->
+
+
+<div id="ContainerHL">  
+  <div id="MainPoster">   
+    <img src="<%=mov.Poster %>" height=280/>
+      <div id="Ratings">
+        <table>
+          <tr>
+            <td><b><span style="color:rgb(200,170,30);">IMDb:</span></b></td>
+            <td><b><%= mov.imdbRating %></b><span style="color:rgb(70,70,70);"> / 10</span></td>
+          </tr>
+         <tr>
+           <td>
+            <div class="button_slide slide_left" ><a href="/movies/<%=mov._id%>/bookings">BOOK SEATS </a> </div>
+           </td>
+         </tr>
+         <tr>
+          <td>
+           <div class="button_slide slide_left"><a href="/">BACK</a></div>
+          </td>
+        </tr>
+
+          
+        </table>
+
+ </div>
+ </div>
+
+ <div id="TitleHL"><b><%= mov.Title %></b></div> 
+ 
+ <!--<div id="UserRatingHL">
+   <div class="stars" id="s1">&#9733</div>
+   <div class="stars" id="s2">&#9733</div>
+   <div class="stars" id="s3">&#9733</div>
+   <div class="stars" id="s4">&#9733</div>
+   <div class="stars" id="s5">&#9733</div>
+ </div>  -->
+</div> 
+<div id="SelMovie">
+ <div id="MovieInfoMain">
+   <div id="Title"><b> </b></div>    
+   <div id="UserRating"></div>   
+   <div id="DetailsTop"></div>
+   <div id="DetailsTopCover"></div>
+   <div id="DetailsBottom"></div>
+   <div id="DetailsBottomCover"></div>
+   <div id="Details">
+    <table>
+      <tr><td class="Key">Genre</td><td class="Value"><%= mov.genre %></td></tr>       
+      <tr><td class="Key">Released</td><td class="Value">2020</td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">    </td><td class="Value">   </td></tr>
+      <tr><td class="Key">Synopsis</td><td class="Value"><%= mov.details %></td></tr>
+      <tr><td class="Key">IMDB ID</td><td class="Value"><%= mov.imdbid %></td></tr>
+
+     </table>
+     
+   </div> 
+ 
+ </div>
+</div>  
+
+<div id="Background">
+   <img src="<%=mov.Poster %>"  />
+</div>
+
+
+
+
+<style>
+body{
+  overflow:scroll;
+  font-family:Arial;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
+}
+a:link, a:visited,  a:hover, a:active
+{
+    color: #ffffff;
+    text-decoration: none;
+} 
+
+#BTN_Back{
+  opacity:0.6; /*hover*/
+  color:white;
+  font-size:30px;
+  position:relative;
+  width:140px;
+  height:50px;
+  border-radius:10px;
+  background-color:rgba(100,100,100,0.9);
+  z-index:10;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+  padding-top:15px;
+  top:160px;
+}
+
+#BTN_Back:hover{
+   opacity:1;
+   cursor: pointer;
+}
+
+
+#Background img {
+  display: block;
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+}
+#Background{ 
+  position:absolute;
+  padding:0;
+  margin:0;
+  top:13%;
+  right:13%;
+  
+  width:100%;
+  height:100%;
+    
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  z-index:1;  
+  -webkit-filter: blur(15px);
+-moz-filter: blur(15px);
+-o-filter: blur(15px);
+-ms-filter: blur(15px);
+filter: blur(15px) brightness(30%);  
+left:-10%;  
+right:-10%;  
+-webkit-box-shadow: inset 0px 0px 91px 137px rgba(0,0,0,1);
+-moz-box-shadow: inset 0px 0px 91px 137px rgba(0,0,0,1);
+box-shadow: inset 0px 0px 91px 137px rgba(0,0,0,1);
+}
+
+#SelMovie {
+  position:relative;  
+  z-index:2;
+  width:820px;
+  padding:0px;
+  margin-left:auto;
+  margin-right:auto;
+  top:100px;
+  height:500px;
+  background-color:rgb(80,80,80);
+  border-radius:10px; 
+  opacity:0.4;
+
+  -webkit-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.7);
+-moz-box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.7);
+box-shadow: 0px 0px 13px 2px rgba(0,0,0,0.7);
+}
+ 
+#ContainerHL { 
+  display:block;
+  width:800px;
+  padding:0px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.button_slide {
+  color: #FFF;
+  opacity:0.6;
+  background-color: rgb(24, 21, 2);
+  position:relative;
+  border: 2px solid rgb(2, 0, 1);
+  border-radius: 10px;
+  padding: 4px;
+  width:100px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #14020d;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+.slide_left:hover {
+  opacity :1;
+  box-shadow: inset 0px 0px 0px 50px #080005;
+}
+
+
+#MainPoster { 
+  position:relative;
+  z-index:10;
+  top:170px;
+  left:30px;
+  float:left;  
+}
+#Ratings { 
+  position:relative;
+  z-index:10;
+  top:20px;
+  left:10px;   
+}
+
+#Ratings table td{
+  font-size:20px;
+ width:90px;
+  height:25px;
+  color:rgb(200,200,200);
+}
+
+
+#TitleHL {  
+  position:absolute;
+  top:125px;
+  left:60px;
+  float:left;
+  overflow:hidden;  
+  font-family:Arial;
+  font-size:30px;
+  font-weight:40;
+  padding-right:30px;
+  color:rgb(200,200,10);
+  z-index:10
+}
+.stars {
+  float:left;
+}
+#UserRatingHL {  
+  display:block;
+  position:relative;
+  top:130px;
+  left:60px;
+  float:left;  
+  overflow:hidden;  
+  font-family:Arial;
+  font-size:30px;
+  font-weight:40;
+  padding-right:30px;
+  color:rgb(20,20,20);
+  z-index:10;
+  cursor:pointer;
+}
+#MovieInfoMain {
+  font-family:Arial;
+  position:absolute;  
+  z-index:3;
+  width:500px;
+  top:30px;
+  left:270px;    
+  height:450px;
+  overflow:hidden;   
+}
+
+#DetailsTopCover {
+  position:absolute;
+  top:50px;    
+  width:100%;
+  height:15px;  
+  background-color:rgb(80,80,80);
+  overflow-y:scroll; 
+  padding-top:10px;  
+  padding-right:10px;  
+  z-index:4;
+}
+#DetailsTop {
+  position:absolute;
+  top:50px;    
+  width:100%;
+  height:20px;  
+  background-color:rgb(30,30,30);
+  
+  overflow-y:scroll; 
+  padding-top:10px;  
+  padding-right:10px;
+  
+  -webkit-box-shadow: 0px 10px 10px 0px rgba(30,30,30,1);
+-moz-box-shadow: 0px 10px 10px 0px rgba(30,30,30,1);
+box-shadow: 0px 10px 10px 0px rgba(30,30,30,1);
+  z-index:4;
+}
+
+#DetailsBottom {
+  position:absolute;
+  top:395px;    
+  width:100%;
+  height:10px;  
+  background-color:rgb(30,30,30);
+  
+  overflow-y:scroll; 
+  padding-top:10px;  
+  padding-right:10px;
+  
+  -webkit-box-shadow: 0px -10px 10px 0px rgba(30,30,30,1);
+-moz-box-shadow: 0px -10px 10px 0px rgba(30,30,30,1);
+box-shadow: 0px 10px -10px 0px rgba(30,30,30,1);
+  z-index:4;
+}
+
+#Details {
+  position:absolute;
+  top:80px;    
+  width:100%;
+  height:320px;  
+  background-color:rgb(30,30,30); 
+  overflow-y:scroll; 
+  padding-top:10px;  
+  padding-right:10px;  
+}
+
+#Details table {   
+  font-size:18px;
+  position:absolute;   
+  width:350px;
+  top:5px;
+  left:20px;  
+    
+}
+#Details table tr{
+  line-height:28px;  
+}
+#Details table .Key{     
+  position:relative;
+  Color: rgb(200,200,200);  
+}
+#Details table .Value{     
+  position:relative;
+  left:0px;
+  width:230px;  
+  color:white;
+}
+
+</style> 
+
