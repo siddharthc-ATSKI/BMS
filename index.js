@@ -1,17 +1,14 @@
+
 if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+  require("dotenv").config();}
+console.log(process.env.password);
 
-var Publishable_Key =
-  "pk_test_51K1bYMSBA7A7Kw5YXcq1uL8Beh5N0BJjU86uxd9H1FgMcnsNbkJfWbDv9jfU5MoSRsIU8NaGxEGYhdBued5agbXn00wFmlidve";
-var Secret_Key =
-  "sk_test_51K1bYMSBA7A7Kw5YnoAfMI7Z3puR5PCdSszk40iMBkkkw3obKjfKs5lD1wbyxJ5XXj8Nak5Lh2TVCjoCkF76eiNA00DzDzt0ai";
-
+ 
 const express = require("express");
 const date = require('date-and-time');
 const app = express();
 const path = require("path");
-const stripe = require("stripe")(Secret_Key);
+const stripe = require("stripe")(process.env.Secret_Key);
 const bodyparser = require("body-parser");
 const { isLoggedIn,isAdmin } = require("./middleware");
 const session = require("express-session");
@@ -22,7 +19,7 @@ const userSchema = require("./models/user");
 const showSchema = require("./models/showDetails");
 const ejsMate = require("ejs-mate");
 const data2 = require("./seeds/data2");
-const { v4: uuid } = require("uuid");
+const { v4: uuid, stringify } = require("uuid");
 // const  data  = require("./seeds/rapidapi");
 const request = require("request");
 const passport = require("passport");
@@ -181,7 +178,7 @@ app.get(
 app.get("/ott/:_id/bookings",isLoggedIn,catchAysnc(async (req,res)=>{
   const { _id } = req.params;
   const s = await movieSchema.findById(_id);
-res.render("ottpayments",{s,_id,key:Publishable_Key,})
+res.render("ottpayments",{s,_id,key:(process.env.Publishable_Key),})
 }));
 
 
@@ -287,7 +284,7 @@ app.get("/movies/:_id/bookings/:timeSlot/:date", isLoggedIn,async (req, res) => 
   
   const movieDATA = await movieSchema.findById(_id).populate("shows.theotor");
   console.log(movieDATA)
-  res.render("bookings", { movieDATA, timeSlot ,date,key:Publishable_Key,});
+  res.render("bookings", { movieDATA, timeSlot ,date,key:(process.env.Publishable_Key),});
 });
 
 app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
