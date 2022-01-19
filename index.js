@@ -5,7 +5,7 @@ console.log(process.env.password);
 
  
 const express = require("express");
-const date = require('date-and-time');
+
 const app = express();
 const path = require("path");
 const stripe = require("stripe")(process.env.Secret_Key);
@@ -281,10 +281,8 @@ app.get("/movies/:_id/bookings", isLoggedIn,async (req, res) => {
 
 app.get("/movies/:_id/bookings/:timeSlot/:date", isLoggedIn,async (req, res) => {
   const { _id, timeSlot,date } = req.params;
-  
-  const movieDATA = await movieSchema.findById(_id).populate("shows.theotor");
-  console.log(movieDATA)
-  res.render("bookings", { movieDATA, timeSlot ,date,key:(process.env.Publishable_Key),});
+  const movieDATA = await movieSchema.findById(_id);
+  res.render("bookings", { movieDATA, timeSlot ,date,key:Publishable_Key,});
 });
 
 app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
@@ -314,7 +312,32 @@ app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
       });
     })
     .then((charge) => {
-      res.render("showpage")
+      const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey('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');
+const msg = {
+  to: req.user.email,
+  from: 'anuragbulhe@gmail.com', 
+  templateId: 'd-56a64fc2896b4025b274bef98118cc2f',
+  dynamicTemplateData: {
+    subject: 'Testing Templates',
+  },
+  subject: 'Movie Ticket Booking',
+  text: 'Successfully Booked',
+  html: 'Your booking has been confirmed',
+};
+
+sgMail
+  .send(msg)
+  .then(() => {
+    res.render('showpage');
+  }, error => {
+    console.error(error);
+
+    if (error.response) {
+      console.error(error.response.body)
+    }
+  });
+  
       
       //res.send("Success"); // If no error occurs
     })
