@@ -1,13 +1,9 @@
-
-
-
 <style>
   @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
   
 * {
   box-sizing: border-box;
 }
-
 body {
   background-color: #242333;
   color: #fff;
@@ -19,11 +15,9 @@ body {
   font-family: 'Lato', sans-serif;
   margin: 0;
 }
-
 .movie-container {
   margin: 20px 0;
 }
-
 .movie-container select {
   background-color: #fff;
   border: 0;
@@ -35,12 +29,10 @@ body {
   -webkit-appearance: none;
   appearance: none;
 }
-
 .container {
   perspective: 1000px;
   margin-bottom: 30px;
 }
-
 .seat {
   background-color: #444451;
   height: 12px;
@@ -49,33 +41,26 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-
 .seat.selected {
   background-color: #6feaf6;
 }
-
 .seat.occupied {
   background-color: #fff;
 }
-
 .seat:nth-of-type(2) {
   margin-right: 18px;
 }
-
 .seat:nth-last-of-type(2) {
   margin-left: 18px;
 }
-
 .seat:not(.occupied):hover {
   cursor: pointer;
   transform: scale(1.2);
 }
-
 .showcase .seat:not(.occupied):hover {
   cursor: default;
   transform: scale(1);
 }
-
 .showcase {
   background: rgba(0, 0, 0, 0.1);
   padding: 5px 10px;
@@ -85,23 +70,19 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
 .showcase li {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 10px;
 }
-
 .showcase li small {
   margin-left: 2px;
 }
-
 .row {
   display: flex;
   margin-left: 112px;
 }
-
 .screen {
   background-color: #fff;
   height: 70px;
@@ -110,27 +91,22 @@ body {
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
 }
-
 p.text {
   margin: 5px 0;
 }
-
 p.text span {
   color: #6feaf6;
 }
 </style>
+
 <p>We have a price of  200/-  per seat for all kind of movies</p>
 <div class="container">
-
-
-    <div class="movie-container">
+  <div class="movie-container">
         <label>Pick a movie:</label>
         <select id="movie">
           <option value="<%= movieDATA.Title %> "><%= movieDATA.Title %></option>
-         
-        </select>
+             </select>
       </div>
-    
       <ul class="showcase">
         <li>
           <div class="seat"></div>
@@ -145,11 +121,9 @@ p.text span {
           <small>Occupied</small>
         </li>
       </ul>
-    
-      <div class="container">
+       <div class="container">
         <div class="screen"></div>
-    
-        <div class="row">
+     <div class="row">
           <div class="seat"></div>
           <div class="seat"></div>
           <div class="seat"></div>
@@ -210,15 +184,12 @@ p.text span {
           <div class="seat"></div>
         </div>
       </div>
-    
-      <p class="text">
+     <p class="text">
         You have selected <span id="count">0</span> seats for a price of ₹<span
          id="total" >0</span
         >
       </p>
 </div>
-
-
 
 <script>
   const container = document.querySelector('.container');
@@ -226,11 +197,8 @@ const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
-
 populateUI();
-
 let ticketPrice = +movieSelect.value;
-
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
@@ -240,25 +208,18 @@ var s=0;
 // Update total and count
 function updateSelectedCount(s) {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
-
-  const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
-
-  localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
-
-  const selectedSeatsCount = selectedSeats.length;
-
-  count.innerText = selectedSeatsCount;
+ const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
+localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
+ const selectedSeatsCount = selectedSeats.length;
+ count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * 200;
   s=selectedSeatsCount * 200;
- 
   setMovieData(movieSelect.selectedIndex, movieSelect.value);
   return s;
 }
-
 // Get data from localstorage and populate UI
 function populateUI() {
   const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-
   if (selectedSeats !== null && selectedSeats.length > 0) {
     seats.forEach((seat, index) => {
       if (selectedSeats.indexOf(index) > -1) {
@@ -266,21 +227,17 @@ function populateUI() {
       }
     });
   }
-
   const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
-
   if (selectedMovieIndex !== null) {
     movieSelect.selectedIndex = selectedMovieIndex;
   }
 }
-
 // Movie select event
 movieSelect.addEventListener('change', e => {
   ticketPrice = +e.target.value;
   setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount(0);
 });
-
 // Seat click event
 container.addEventListener('click', e => {
   if (
@@ -293,14 +250,11 @@ container.addEventListener('click', e => {
     console.log("m",m);
   }
 });
-
 // Initial count and total set
 n=updateSelectedCount(0);
 console.log("n",n);
 min=5;
 </script>
-
-
 <form action="/movies/:_id/bookings/:timeSlot/payment" method="POST"> 
 	<script
 		src="//checkout.stripe.com/v2/checkout.js"
@@ -311,12 +265,9 @@ min=5;
 		data-name="Movie tickets" 
 		data-description="Buy" 
 		data-locale="auto" 
-    
     > 
-    
-		</script> 
-    
-	</form> 
+    </script> 
+    </form> 
  
 
 
