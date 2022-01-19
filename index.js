@@ -282,7 +282,7 @@ app.get("/movies/:_id/bookings", isLoggedIn,async (req, res) => {
 app.get("/movies/:_id/bookings/:timeSlot/:date", isLoggedIn,async (req, res) => {
   const { _id, timeSlot,date } = req.params;
   const movieDATA = await movieSchema.findById(_id);
-  res.render("bookings", { movieDATA, timeSlot ,date,key:Publishable_Key,});
+  res.render("bookings", { movieDATA, timeSlot ,date,key:process.env.Publishable_Key,});
 });
 
 app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
@@ -313,7 +313,7 @@ app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
     })
     .then((charge) => {
       const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.RapidApi);
 const msg = {
   to: req.user.email,
   from: 'anuragbulhe@gmail.com', 
