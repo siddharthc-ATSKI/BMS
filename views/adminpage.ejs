@@ -6,7 +6,7 @@
         <div class="col-6 offset-3">
 <form action="/updatemovies" method="post">
     <div>
-        <label for="theotor">Choose a Theotor:</label>
+        <label for="theotor" ><div class="m">Choose a Theatre:</div></label>
 
         <select name="theotor" id="theotor">
             <% for(let t of theotorData){ %> 
@@ -16,7 +16,7 @@
     </div>
    
 <div>
-    <label for="movie">Choose a Movie:</label>
+    <label for="movie"><div class="m">Choose a Movie:</div></label>
 
     <select name="movie" id="movie">
         <% for(let t of movieData){ %> 
@@ -26,7 +26,7 @@
 </div>
 <div>
     <label for="timeSlot">
-        Select time slot:
+        <div class="m">  Select time slot:</div>
     </label>
     <select name="timeSlot" id="timeSlot">
         <option value="11-1">11-1</option>
@@ -36,11 +36,164 @@
         
     </select>
 </div>
-<label for="date">Enter data:</label>
+<label for="date"><div class="m">Enter data:</div></label>
 <input type="date" name="date" id="date">
-    <button>Submit</button>
+<div>
+    <button class="btn btn-primary btn-lg">Submit</button>
+</div>
+<p></p>
+
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+<p> .</p>
+
 </form>
 
         </div>
     </div>
 </div>
+
+
+
+
+  <style>
+
+
+html, body{
+   padding:0px;
+   margin:0px;
+   background:#191A1D;
+   font-family: 'Karla', sans-serif;
+   width:100vw;
+}
+body * {
+   margin:0;
+   padding:0;
+}
+
+/* HTML Nav Styles */
+/* HTML Nav Styles */
+/* HTML Nav Styles */
+.m{
+    color:white;
+}
+.btn-primary{
+display:inline-block;
+
+padding:0.5%;
+margin:2%;
+position:relative;
+top:100%;
+bottom:30%;
+left:40%;
+background-color:rgb(73, 82, 163);
+
+}
+n menuitem {
+   position:relative;
+   display:block;
+   opacity:0;
+   cursor:pointer;
+
+   background:#75F;
+   color:#FFF;
+   min-width:190px;
+   transition: background 0.5s, color 0.5s, transform 0.5s;
+   margin:0px 6px 6px 0px;
+   padding:20px 40px;
+   box-sizing:border-box;
+   border-radius:3px;
+   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+   position:relative;
+}
+
+n menuitem > menu {
+   position: absolute;
+   pointer-events:none;
+}
+n > menu { display:flex; }
+
+n > menu > menuitem { pointer-events: all; opacity:1; }
+menu menuitem a { white-space:nowrap; display:block; }
+   
+menuitem:hover > menu {
+   pointer-events:initial;
+}
+menuitem:hover > menu > menuitem,
+menu:hover > menuitem{
+   opacity:1;
+}
+n > menu > menuitem menuitem menu {
+   transform:translateX(100%);
+   top:0; right:0;
+}
+/* User Styles Below Not Required */
+/* User Styles Below Not Required */
+/* User Styles Below Not Required */
+
+n { 
+   margin-top: 40px;
+   margin-left: 40px;
+}
+
+
+
+n a:hover:before {
+   content: '';
+   top:0;left:0;
+   position:absolute;
+   background:rgba(0, 0, 0, 0.2);
+   width:100%;
+   height:100%;
+}
+
+n > menu > menuitem > a + menu:after{
+   content: '';
+   position:absolute;
+   border:10px solid transparent;
+   border-top: 10px solid white;
+   left:12px;
+   top: -40px;  
+}
+n menuitem > menu > menuitem > a + menu:after{ 
+   content: '';
+   position:absolute;
+   border:10px solid transparent;
+   border-left: 10px solid white;
+   top: 20px;
+   left:-180px;
+   transition: opacity 0.6, transform 0s;
+}
+
+n > menu > menuitem > menu > menuitem{
+   transition: transform 0.6s, opacity 0.6s;
+   transform:translateY(150%);
+   opacity:0;
+}
+n > menu > menuitem:hover > menu > menuitem,
+n > menu > menuitem.hover > menu > menuitem{
+   transform:translateY(0%);
+   opacity: 1;
+}
+
+menuitem > menu > menuitem > menu > menuitem{
+   transition: transform 0.6s, opacity 0.6s;
+   transform:translateX(195px) translateY(0%);
+   opacity: 0;
+} 
+menuitem > menu > menuitem:hover > menu > menuitem,  
+menuitem > menu > menuitem.hover > menu > menuitem{  
+   transform:translateX(0) translateY(0%);
+   opacity: 1;
+}
+  </style>
