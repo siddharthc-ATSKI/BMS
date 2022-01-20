@@ -312,6 +312,7 @@ app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
       });
     })
     .then((charge) => {
+      
 res.render('showpage');      
       }).catch((err) => {
       res.send(err); // If some error occurs
