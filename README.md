@@ -1,7 +1,7 @@
 # BOOKIT
 
 ### Team name: HEATHENS
-
+<img src="https://www.ayresadventures.com/wp-content/uploads/2014/02/BMS-Logo.png" alt="BMS" class="center">
 ## Team members
 * [Aniket Panchal](https://github.com/aniketpanchal52648) - aniketpanchal52648@gmail.com
 * [Siddharth Chintapatla](https://github.com/siddharthc-ATSKI) - csiddharth3103@gmail.com
@@ -20,6 +20,11 @@
 >and enjoy the show you were always postponing.
 >As we have integrated it with both movies and shows 
 >,the user  can enjoy even from the comfort of their home.
+>The website also allows theatre owners, to post any 
+> shows which are running in their theatres.
+>for that you need to become admin to get this opportunity.
+> To become a one you can contact any of the team members.
+
 >* Drive link: [Drive link here]()
 >* Website link: [Website link here]()
 ## Technology stack
@@ -29,9 +34,12 @@
 3. <a href="https://nodejs.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/>NODE JS
 </a>
 * Frameworks
+
 1. <a href="https://expressjs.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40">EXPRESS </a>
+
 2.<a href="https://www.mongodb.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40">  MONGODB(ATLAS)</a>
  
+
 
 ## Project Setup
 >* Clone our Github Repository link.
@@ -57,7 +65,7 @@ EMAIL =
 PASSWORD = 
 
 #------------------------------------------------------
-# STRIPE CREDENTIALS
+#STRIPE CREDENTIALS
 PUBLISHABLE_KEY=
 
 SECRET_KEY=
