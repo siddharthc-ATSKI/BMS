@@ -29,8 +29,8 @@
 >for that you need to become admin to get this opportunity.
 > To become a one you can contact any of the team members.
 
->* Drive link: [Drive link here]()
->* Website link: [Website link here]()
+>* Drive link: [Drive link here](https://drive.google.com/drive/u/1/folders/10WqJZul27zALj2v6LHj2BJAhv1ZDQu4l)
+>* Github Reppo: [Repo here](https://github.com/siddharthc-ATSKI/BMS)
 ## Technology stack
 * Languages
 1. <a href="https://www.w3.org/TR/html5/" title="HTML5"><img src="https://github.com/get-icon/geticon/raw/master/icons/html-5.svg" alt="HTML5" width="40px" height="40px">HTML</a>
