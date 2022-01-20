@@ -121,4 +121,15 @@ Drive link of [screenshots](https://drive.google.com/drive/u/1/folders/10WqJZul2
 * ![p11](https://drive.google.com/file/d/1aKytgbJ7k_OUX3qk3CsbQiJpRpofBW5A/view?usp=sharing)
 
 
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p1.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p2.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p3.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p4.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p5.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p6.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p7.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p8.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p9.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p10.png" height ="350" />
+<img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p11.png" height ="350" />
 
