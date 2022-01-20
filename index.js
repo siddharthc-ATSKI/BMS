@@ -312,39 +312,12 @@ app.post("/movies/:_id/bookings/:timeSlot/payment", function (req, res) {
       });
     })
     .then((charge) => {
-      const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.RapidApi);
-const msg = {
-  to: req.user.email,
-  from: 'anuragbulhe@gmail.com', 
-  templateId: 'd-56a64fc2896b4025b274bef98118cc2f',
-  dynamicTemplateData: {
-    subject: 'Testing Templates',
-  },
-  subject: 'Movie Ticket Booking',
-  text: 'Successfully Booked',
-  html: 'Your booking has been confirmed',
-};
-
-sgMail
-  .send(msg)
-  .then(() => {
-    res.render('showpage');
-  }, error => {
-    console.error(error);
-
-    if (error.response) {
-      console.error(error.response.body)
-    }
-  });
-  
-      
-      //res.send("Success"); // If no error occurs
-    })
-    .catch((err) => {
+res.render('showpage');      
+      }).catch((err) => {
       res.send(err); // If some error occurs
+  });
     });
-});
+  
 const paymentIntent =  stripe.paymentIntents.create({
   amount: 1099,
   currency: 'INR',
