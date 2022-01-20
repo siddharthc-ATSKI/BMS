@@ -2,6 +2,10 @@
 
 ### Team name: HEATHENS
 <img src="https://www.ayresadventures.com/wp-content/uploads/2014/02/BMS-Logo.png" alt="BMS" class="center">
+
+
+
+
 ## Team members
 * [Aniket Panchal](https://github.com/aniketpanchal52648) - aniketpanchal52648@gmail.com
 * [Siddharth Chintapatla](https://github.com/siddharthc-ATSKI) - csiddharth3103@gmail.com
@@ -66,6 +70,8 @@ PASSWORD =
 
 #------------------------------------------------------
 #STRIPE CREDENTIALS
+
+
 PUBLISHABLE_KEY=
 
 SECRET_KEY=
@@ -81,7 +87,7 @@ DATABASEURL =
 >  * Web Developer Bootcamp: -[Resource link here](https://www.udemy.com/course/the-web-developer-bootcamp/)
 
 ## Usage
->After cloning our repository and npm i
+>After cloning our repository and  tyyping the command npm i
 >insert your values in env file
 >Write the below command in your terminal
 >nodemon index.js
