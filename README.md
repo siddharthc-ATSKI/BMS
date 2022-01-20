@@ -29,7 +29,7 @@
 >for that you need to become admin to get this opportunity.
 > To become a one you can contact any of the team members.
 
->* Drive link: [Drive link here](https://drive.google.com/file/d/1aKytgbJ7k_OUX3qk3CsbQiJpRpofBW5A/view?usp=sharing)
+>* Drive link: [Drive link here](https://drive.google.com/file/d/1Bx-d7CkGR1dk9lJGQ1Goe4D07p2wMYoJ/view?usp=sharing)
 >* Github Reppo: [Repo here](https://github.com/siddharthc-ATSKI/BMS)
 ## Technology stack
 * Languages
