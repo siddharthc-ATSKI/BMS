@@ -108,17 +108,7 @@ In a new tab type localhost:3000. You can now view the website.
 Drive link of [screenshots](https://drive.google.com/drive/u/1/folders/10WqJZul27zALj2v6LHj2BJAhv1ZDQu4l)
 
 
-* ![p1](https://drive.google.com/file/d/1_uCFXBtG-GClbI-Yamno_xObwdKgUTkA/view?usp=sharing)
-* ![p2](https://drive.google.com/file/d/15xN_35T-tPy4k_d8LpOmTz9h8vjFgT0o/view?usp=sharing)
-* ![p3](https://drive.google.com/file/d/13DFZmPo5BifCJx8FKtUnV6vU53C0RcT_/view?usp=sharing)
-* ![p4](https://drive.google.com/file/d/17MboJNsc8eGHV5G74oECQUWeaBwJ8ZYE/view?usp=sharing)
-* ![p5](https://drive.google.com/file/d/1krHFH3mkM9Fs3vuxysWrPSZyaeLhRp9_/view?usp=sharing)
-* ![p6](https://drive.google.com/file/d/1e6pgTz_PIR4-MHzPeq3iYHupqXBKNLFb/view?usp=sharing)
-* ![p7](https://drive.google.com/file/d/1EqGS2JN0L5pTr39bstxRSU_KteON0hxY/view?usp=sharing)
-* ![p8](https://drive.google.com/file/d/13VTGSP32po-vFhkYlJjuADxmZBe9OQyv/view?usp=sharing)
-* ![p9](https://drive.google.com/file/d/1mqyo85cRfW72Apj6LXn_DjeOwMaK593o/view?usp=sharing)
-* ![p10](https://drive.google.com/file/d/1cM9JjvEAMw-yNrF5cH-O0IExge2f91Mu/view?usp=sharing)
-* ![p11](https://drive.google.com/file/d/1aKytgbJ7k_OUX3qk3CsbQiJpRpofBW5A/view?usp=sharing)
+
 
 
 <img src ="https://github.com/siddharthc-ATSKI/BMS/blob/master/logo/p1.png" height ="350" />
