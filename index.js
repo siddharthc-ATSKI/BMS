@@ -21,6 +21,7 @@ const ejsMate = require("ejs-mate");
 const data2 = require("./seeds/data2");
 const { v4: uuid, stringify } = require("uuid");
 // const  data  = require("./seeds/rapidapi");
+
 const request = require("request");
 const passport = require("passport");
 const passportLocal = require("passport-local");
@@ -37,9 +38,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoDB();
+
+
 // Set the default templating engine to ejs
 
+
+
 const sessionConfig = {
+  
   secret: "123456789",
   resave: false,
   saveUninitialized: true,

@@ -7,6 +7,7 @@
     "@sendgrid/mail": "^7.6.0",
     "axios": "^0.25.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
     "date-and-time": "^2.1.0",
     "dotenv": "^14.2.0",
     "ejs-mate": "^3.0.0",
