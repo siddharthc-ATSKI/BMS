@@ -9,7 +9,7 @@
 ## Team members
 * [Aniket Panchal](https://github.com/aniketpanchal52648) - aniketpanchal52648@gmail.com
 * [Siddharth Chintapatla](https://github.com/siddharthc-ATSKI) - csiddharth3103@gmail.com
-* [Anurag Bhule](https://github.com/Anurag907922) - anuragbulhe@gmail.com
+* [Anurag Bulhe](https://github.com/Anurag907922) - anuragbulhe@gmail.com
 * [Atharva Apkare](https://github.com/atharvaapkare) - atharvaapkare@gmail.com
 
 ## Mentors
