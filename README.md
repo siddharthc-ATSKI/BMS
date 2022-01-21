@@ -1,4 +1,4 @@
-# BOOKIT
+# BMS
 
 ### Team name: HEATHENS
 <img src="https://www.ayresadventures.com/wp-content/uploads/2014/02/BMS-Logo.png" alt="BMS" class="center">
